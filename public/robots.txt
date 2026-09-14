@@ -1,0 +1,6 @@
+# Suan Dusit Food Guide
+# The admin area is reachable only by typing its URL — keep it out of search
+# results too, so it never turns up in a Google search for the site.
+User-agent: *
+Disallow: /admin
+power by satangttv4

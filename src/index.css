@@ -1,0 +1,176 @@
+@import 'tailwindcss';
+
+/* ------------------------------------------------------------------
+   SUAN DUSIT FOOD GUIDE — Design tokens
+
+   Palette follows the university's own identity: สีฟ้าน้ำทะเล (sea blue)
+   as the primary, with the gold of the crest's outer ring as the secondary.
+   Neutrals are cooled to match, and a deep sea-navy anchors the navbar,
+   footer and admin shell.
+
+   Food photography sits on the cool ground rather than fighting it — warm
+   dishes read as complementary against blue, so the pictures stay the
+   loudest thing on the page.
+------------------------------------------------------------------ */
+@theme {
+  /* Brand — สีฟ้าน้ำทะเล, the university colour */
+  --color-brand-50: #eff9fd;
+  --color-brand-100: #d5f0fa;
+  --color-brand-200: #a8e1f4;
+  --color-brand-300: #6ecbe9;
+  --color-brand-400: #33aed6;
+  --color-brand-500: #1291bb;
+  --color-brand-600: #0a7599;
+  --color-brand-700: #0c5f7c;
+  --color-brand-800: #114e66;
+  --color-brand-900: #133e52;
+
+  /* Gold — the crest's outer ring: secondary CTA, ratings, price badges */
+  --color-gold-300: #f3dfa0;
+  --color-gold-400: #e4c25c;
+  --color-gold-500: #d4a72c;
+  --color-gold-600: #b8860b;
+  --color-gold-700: #92690a;
+
+  /* Deep sea-blue — navbar accents, footer, admin shell, dark panels.
+     Same hue family as the brand, kept saturated rather than smoked down to
+     near-black: a deep blue surface still reads as a colour, where a very
+     dark teal just reads as "hard to see". */
+  --color-navy-50: #edf6fa;
+  --color-navy-100: #d2e8f1;
+  --color-navy-500: #1a7fa3;
+  --color-navy-600: #14688a;
+  --color-navy-700: #0f5572;
+  --color-navy-800: #0b445d;
+  --color-navy-900: #072f42;
+
+  /* Cool neutrals so nothing on the page drifts warm */
+  --color-ink: #0b2b36;
+  --color-body: #40535b;
+  --color-muted: #5a7077;
+  --color-line: #dde9ed;
+  --color-cream: #f8fcfd;
+  --color-cream-deep: #eff8fb;
+
+  --font-display: 'Playfair Display SC', 'Noto Serif Thai', Georgia, serif;
+  --font-sans: 'Karla', 'IBM Plex Sans Thai', system-ui, sans-serif;
+  --font-thai: 'IBM Plex Sans Thai', 'Karla', system-ui, sans-serif;
+
+  --radius-card: 1.125rem;
+
+  --shadow-card: 0 1px 2px rgb(11 43 54 / 0.05), 0 8px 24px -12px rgb(11 43 54 / 0.2);
+  --shadow-lift: 0 2px 4px rgb(11 43 54 / 0.06), 0 18px 40px -16px rgb(11 43 54 / 0.3);
+
+  --animate-rise: rise 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-fade: fade 0.3s ease-out both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ------------------------------------------------------------------
+   Base element styles.
+
+   These live inside `@layer base` on purpose. Tailwind's utilities sit in
+   the `utilities` layer, and an UNLAYERED rule beats every layered one no
+   matter how specific — so an unlayered `h2 { color: … }` would silently
+   override `class="text-white"` on a heading and paint dark text onto the
+   dark footer and hero panels. Keeping these in `base` lets utilities win.
+------------------------------------------------------------------ */
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background: var(--color-cream);
+    color: var(--color-body);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.65;
+    /* Thai runs have no spaces to break at — let a long one wrap inside its
+       card instead of pushing the layout wider than the screen. */
+    overflow-wrap: break-word;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Thai glyphs are taller than Latin — a hair more line-height reads better */
+  :lang(th) {
+    line-height: 1.75;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    line-height: 1.22;
+    letter-spacing: -0.01em;
+  }
+
+  /* Visible focus for keyboard users, invisible for mouse users */
+  :focus-visible {
+    outline: 2px solid var(--color-brand-600);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: var(--color-brand-200);
+    color: var(--color-ink);
+  }
+}
+
+/* Slimmer scrollbar inside scrollable panes */
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-brand-200) transparent;
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
