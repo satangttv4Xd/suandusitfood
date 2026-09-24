@@ -10,6 +10,8 @@ import {
   getStorageUsage,
   importDatabase,
   resetToSeed,
+  syncDatabaseWithCloud,
+  uploadLocalDatabaseToCloud,
 } from '../../lib/db'
 import { formatBytes } from '../../lib/image'
 import { useDatabase, useSessionState } from '../../lib/hooks'
@@ -90,12 +92,90 @@ export function AdminSettings() {
     setPending(null)
   }
 
+  const [syncingCloud, setSyncingCloud] = useState(false)
+
+  const handleUploadToCloud = async () => {
+    setSyncingCloud(true)
+    try {
+      const res = await uploadLocalDatabaseToCloud()
+      if (res.success) {
+        toast.success(
+          `อัปโหลดข้อมูลจากเครื่องนี้ขึ้น Supabase สำเร็จแล้ว! (${res.counts.restaurants} ร้าน, ${res.counts.team} สมาชิก, ${res.counts.menus} เมนู)`,
+        )
+      }
+    } catch (err: any) {
+      toast.error(err?.message || 'เกิดข้อผิดพลาดในการอัปโหลดขึ้น Cloud')
+    } finally {
+      setSyncingCloud(false)
+    }
+  }
+
+  const handlePullFromCloud = async () => {
+    setSyncingCloud(true)
+    try {
+      const ok = await syncDatabaseWithCloud(true)
+      if (ok) {
+        toast.success('ดึงข้อมูลล่าสุดจาก Supabase Cloud สำเร็จแล้ว!')
+      } else {
+        toast.info('ข้อมูลเป็นเวอร์ชันล่าสุดแล้ว')
+      }
+    } catch {
+      toast.error('ไม่สามารถดึงข้อมูลจาก Cloud ได้')
+    } finally {
+      setSyncingCloud(false)
+    }
+  }
+
   return (
     <>
       <AdminPageHeader
         title="ตั้งค่าข้อมูล"
         description="จัดการบัญชีผู้ดูแล สำรองข้อมูล และคืนค่าข้อมูลตัวอย่าง"
       />
+
+      {/* Supabase Cloud Sync Section */}
+      <section className="mb-6 rounded-card bg-gradient-to-r from-navy-900 via-navy-800 to-slate-900 p-5 sm:p-6 text-white shadow-md ring-1 ring-white/10">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+          <div className="flex items-start gap-3.5">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-gold-400 text-navy-950 font-bold shadow-xs">
+              <Icon name="sparkles" className="h-6 w-6" />
+            </span>
+            <div>
+              <div className="flex items-center gap-2">
+                <h2 className="text-lg font-bold text-white">Supabase Cloud Database Sync</h2>
+                <span className="inline-flex items-center rounded-full bg-emerald-400/20 px-2.5 py-0.5 text-xs font-bold text-emerald-300 ring-1 ring-emerald-400/30">
+                  เชื่อมต่อแล้ว
+                </span>
+              </div>
+              <p className="mt-1 text-sm text-navy-100/80 leading-relaxed max-w-2xl">
+                หากคุณเคยพิมพ์ข้อมูลร้านอาหารหรือสมาชิกไว้ในคอมพิวเตอร์เครื่องนี้ กดปุ่ม
+                <strong> “อัปโหลดข้อมูลจากเครื่องนี้ขึ้น Cloud” </strong>
+                ข้อมูลทั้งหมดจะถูกส่งเข้า Supabase ทันที เมื่อเปิดผ่านมือถือก็จะเห็นข้อมูลเดียวกันโดยไม่ต้องพิมพ์ใหม่
+              </p>
+            </div>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-2.5 shrink-0">
+            <Button
+              variant="gold"
+              icon="upload"
+              onClick={handleUploadToCloud}
+              disabled={syncingCloud}
+            >
+              {syncingCloud ? 'กำลังอัปโหลด...' : 'อัปโหลดข้อมูลเครื่องนี้ขึ้น Cloud'}
+            </Button>
+            <Button
+              variant="outline"
+              icon="refresh"
+              onClick={handlePullFromCloud}
+              disabled={syncingCloud}
+              className="text-white border-white/20 hover:bg-white/10"
+            >
+              ดึงจาก Cloud
+            </Button>
+          </div>
+        </div>
+      </section>
 
       <div className="grid gap-6 lg:grid-cols-2">
         {/* ------------------------------------------------- password */}

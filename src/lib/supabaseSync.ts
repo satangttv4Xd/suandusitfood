@@ -323,3 +323,70 @@ export async function syncDeleteReview(id: string) {
     console.error('[Supabase] syncDeleteReview error:', err)
   }
 }
+
+// ----------------------------------------------------------- bulk upload local to cloud
+
+export async function uploadAllLocalToSupabase(db: Database): Promise<{
+  success: boolean
+  counts: { categories: number; restaurants: number; menus: number; reviews: number; team: number }
+}> {
+  if (!supabase) throw new Error('ยังไม่ได้ตั้งค่าการเชื่อมต่อ Supabase')
+
+  const counts = {
+    categories: 0,
+    restaurants: 0,
+    menus: 0,
+    reviews: 0,
+    team: 0,
+  }
+
+  // 1. Categories
+  if (db.categories && db.categories.length > 0) {
+    const payload = db.categories.map(mapCategoryToDb)
+    const { error } = await supabase.from('categories').upsert(payload)
+    if (!error) counts.categories = db.categories.length
+    else console.error('[Supabase] Error uploading categories:', error)
+  }
+
+  // 2. Restaurants
+  if (db.restaurants && db.restaurants.length > 0) {
+    const payload = db.restaurants.map(mapRestaurantToDb)
+    const { error } = await supabase.from('restaurants').upsert(payload)
+    if (!error) counts.restaurants = db.restaurants.length
+    else console.error('[Supabase] Error uploading restaurants:', error)
+  }
+
+  // 3. Restaurant Images
+  if (db.restaurantImages && db.restaurantImages.length > 0) {
+    const payload = db.restaurantImages.map(mapRestaurantImageToDb)
+    const { error } = await supabase.from('restaurant_images').upsert(payload)
+    if (error) console.error('[Supabase] Error uploading images:', error)
+  }
+
+  // 4. Menus
+  if (db.menus && db.menus.length > 0) {
+    const payload = db.menus.map(mapMenuToDb)
+    const { error } = await supabase.from('menus').upsert(payload)
+    if (!error) counts.menus = db.menus.length
+    else console.error('[Supabase] Error uploading menus:', error)
+  }
+
+  // 5. Reviews
+  if (db.reviews && db.reviews.length > 0) {
+    const payload = db.reviews.map(mapReviewToDb)
+    const { error } = await supabase.from('reviews').upsert(payload)
+    if (!error) counts.reviews = db.reviews.length
+    else console.error('[Supabase] Error uploading reviews:', error)
+  }
+
+  // 6. Team Members
+  if (db.teamMembers && db.teamMembers.length > 0) {
+    const payload = db.teamMembers.map(mapTeamMemberToDb)
+    const { error } = await supabase.from('team_members').upsert(payload)
+    if (!error) counts.team = db.teamMembers.length
+    else console.error('[Supabase] Error uploading team_members:', error)
+  }
+
+  return { success: true, counts }
+}
+

@@ -8,6 +8,7 @@ import {
 } from './seed'
 import {
   fetchDatabaseFromSupabase,
+  uploadAllLocalToSupabase,
   syncSaveTeamMember,
   syncDeleteTeamMember,
   syncSaveRestaurant,
@@ -219,10 +220,15 @@ export async function syncDatabaseWithCloud(force = false): Promise<boolean> {
   return false
 }
 
+export async function uploadLocalDatabaseToCloud() {
+  return uploadAllLocalToSupabase(getDatabase())
+}
+
 // Trigger initial cloud sync in browser
 if (typeof window !== 'undefined') {
   syncDatabaseWithCloud()
 }
+
 
 
 // -------------------------------------------------------------------- users
