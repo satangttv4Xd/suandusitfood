@@ -377,71 +377,12 @@ export function SDUSpirit() {
                   <Icon name="check" className="h-3 w-3" />
                   สอดคล้องกับโปสเตอร์ SDU Spirit
                 </span>
-                <a
-                  href="#spirit-summary-table"
-                  className="hover:text-brand-600 font-medium transition-colors"
-                >
-                  ดูในตารางสรุป ↑
-                </a>
+                <span className="text-slate-400">
+                  {item.subtitle}
+                </span>
               </div>
             </article>
           ))}
-        </div>
-      </section>
-
-      {/* ------------------------------------- SDU Spirit 9 Pillars Summary Matrix Table */}
-      <section id="spirit-summary-table" className="mt-20 scroll-mt-24">
-        <div className="rounded-3xl bg-white p-6 sm:p-8 shadow-card ring-1 ring-line/80">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 border-b border-line pb-5">
-            <div>
-              <span className="inline-flex items-center gap-1.5 text-xs font-bold text-brand-600 uppercase tracking-wider">
-                <Icon name="list" className="h-4 w-4" />
-                ตารางสรุปการวิเคราะห์เชิงเปรียบเทียบ
-              </span>
-              <h2 className="mt-1 text-2xl font-bold text-ink">
-                สรุปความเชื่อมโยง SDU Spirit 9 ประการในรูปภาพ
-              </h2>
-            </div>
-            <span className="text-xs text-muted">
-              ถอดบทเรียนจากภาพต้นแบบสู่การใช้งานจริง
-            </span>
-          </div>
-
-          <div className="mt-6 overflow-x-auto">
-            <table className="w-full min-w-[720px] text-left text-xs sm:text-sm">
-              <thead>
-                <tr className="border-b border-slate-200 bg-slate-50/80 text-slate-700 font-bold">
-                  <th className="py-3 px-3 w-16 text-center">ข้อ</th>
-                  <th className="py-3 px-4 w-44">หัวข้อตามรูปภาพ</th>
-                  <th className="py-3 px-4">สิ่งที่เห็นในรูปภาพ (Visual)</th>
-                  <th className="py-3 px-4">มิติอาหาร & โภชนาการ (Food)</th>
-                  <th className="py-3 px-4">มิติเว็บไซต์ & ชีวิตจริง (Action)</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100 text-body">
-                {SPIRIT_ITEMS.map((item) => (
-                  <tr key={item.id} className="hover:bg-slate-50/60 transition-colors">
-                    <td className="py-3.5 px-3 text-center font-bold text-brand-600">
-                      #{item.number}
-                    </td>
-                    <td className="py-3.5 px-4 font-bold text-ink">
-                      <div>{item.title}</div>
-                      <div className="text-[11px] font-normal text-muted">{item.subtitle}</div>
-                    </td>
-                    <td className="py-3.5 px-4 text-xs leading-relaxed text-slate-700">
-                      {item.imageFeature}
-                    </td>
-                    <td className="py-3.5 px-4 text-xs leading-relaxed text-amber-950">
-                      {item.foodConnection}
-                    </td>
-                    <td className="py-3.5 px-4 text-xs leading-relaxed text-brand-950">
-                      {item.webActionConnection}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
         </div>
       </section>
     </div>
