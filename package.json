@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@keeratita/heic-converter": "^0.4.1",
+    "@supabase/supabase-js": "^2.117.1",
     "heic-decode": "^2.1.0",
     "heic-to": "^1.5.2",
     "heic2any": "^0.0.4",

@@ -6,6 +6,19 @@ import {
   seedReviews,
   seedTeamMembers,
 } from './seed'
+import {
+  fetchDatabaseFromSupabase,
+  syncSaveTeamMember,
+  syncDeleteTeamMember,
+  syncSaveRestaurant,
+  syncDeleteRestaurant,
+  syncSaveCategory,
+  syncDeleteCategory,
+  syncSaveMenu,
+  syncDeleteMenu,
+  syncSaveReview,
+  syncDeleteReview,
+} from './supabaseSync'
 import type {
   Category,
   Database,
@@ -177,6 +190,41 @@ if (typeof window !== 'undefined') {
   })
 }
 
+// ------------------------------------------------------------- supabase cloud sync
+
+let isSyncingWithCloud = false
+
+export async function syncDatabaseWithCloud(force = false): Promise<boolean> {
+  if (isSyncingWithCloud && !force) return false
+  isSyncingWithCloud = true
+  try {
+    const remote = await fetchDatabaseFromSupabase()
+    if (remote) {
+      mutate((db) => {
+        if (remote.categories && remote.categories.length) db.categories = remote.categories
+        if (remote.restaurants && remote.restaurants.length) db.restaurants = remote.restaurants
+        if (remote.restaurantImages && remote.restaurantImages.length) db.restaurantImages = remote.restaurantImages
+        if (remote.menus && remote.menus.length) db.menus = remote.menus
+        if (remote.reviews && remote.reviews.length) db.reviews = remote.reviews
+        if (remote.teamMembers && remote.teamMembers.length) db.teamMembers = remote.teamMembers
+      })
+      console.log('[Supabase] Successfully synchronized data from cloud')
+      return true
+    }
+  } catch (err) {
+    console.warn('[Supabase] Sync skipped or failed:', err)
+  } finally {
+    isSyncingWithCloud = false
+  }
+  return false
+}
+
+// Trigger initial cloud sync in browser
+if (typeof window !== 'undefined') {
+  syncDatabaseWithCloud()
+}
+
+
 // -------------------------------------------------------------------- users
 
 export function findUserByUsername(username: string): User | undefined {
@@ -215,7 +263,7 @@ export function getCategory(idOrSlug: string): Category | null {
 export type CategoryInput = Omit<Category, 'id' | 'createdAt' | 'slug'> & { slug?: string }
 
 export function createCategory(input: CategoryInput): Category {
-  return mutate((db) => {
+  const category = mutate((db) => {
     const category: Category = {
       ...input,
       id: uid('cat'),
@@ -225,6 +273,8 @@ export function createCategory(input: CategoryInput): Category {
     db.categories.push(category)
     return category
   })
+  syncSaveCategory(category)
+  return category
 }
 
 export function updateCategory(id: string, input: Partial<CategoryInput>) {
@@ -235,6 +285,7 @@ export function updateCategory(id: string, input: Partial<CategoryInput>) {
     if (input.slug) {
       category.slug = uniqueSlug(slugify(input.slug), db.categories, id)
     }
+    syncSaveCategory(category)
   })
 }
 
@@ -246,6 +297,7 @@ export function deleteCategory(id: string) {
       if (restaurant.categoryId === id) restaurant.categoryId = ''
     })
   })
+  syncDeleteCategory(id)
 }
 
 function uniqueSlug(candidate: string, rows: { id: string; slug: string }[], selfId?: string) {
@@ -275,7 +327,7 @@ export type RestaurantInput = Omit<
 > & { slug?: string }
 
 export function createRestaurant(input: RestaurantInput): Restaurant {
-  return mutate((db) => {
+  const restaurant = mutate((db) => {
     const stamp = new Date().toISOString()
     const restaurant: Restaurant = {
       ...input,
@@ -287,6 +339,8 @@ export function createRestaurant(input: RestaurantInput): Restaurant {
     db.restaurants.push(restaurant)
     return restaurant
   })
+  syncSaveRestaurant(restaurant)
+  return restaurant
 }
 
 export function updateRestaurant(id: string, input: Partial<RestaurantInput>) {
@@ -298,6 +352,7 @@ export function updateRestaurant(id: string, input: Partial<RestaurantInput>) {
       restaurant.slug = uniqueSlug(slugify(input.slug), db.restaurants, id)
     }
     restaurant.updatedAt = new Date().toISOString()
+    syncSaveRestaurant(restaurant)
   })
 }
 
@@ -309,6 +364,7 @@ export function deleteRestaurant(id: string) {
     db.menus = db.menus.filter((m) => m.restaurantId !== id)
     db.reviews = db.reviews.filter((r) => r.restaurantId !== id)
   })
+  syncDeleteRestaurant(id)
 }
 
 // ------------------------------------------------------- restaurant images
@@ -357,17 +413,22 @@ export function getMenu(id: string): Menu | null {
 export type MenuInput = Omit<Menu, 'id' | 'createdAt'>
 
 export function createMenu(input: MenuInput): Menu {
-  return mutate((db) => {
+  const menu = mutate((db) => {
     const menu: Menu = { ...input, id: uid('menu'), createdAt: new Date().toISOString() }
     db.menus.push(menu)
     return menu
   })
+  syncSaveMenu(menu)
+  return menu
 }
 
 export function updateMenu(id: string, input: Partial<MenuInput>) {
   mutate((db) => {
     const menu = db.menus.find((m) => m.id === id)
-    if (menu) Object.assign(menu, input)
+    if (menu) {
+      Object.assign(menu, input)
+      syncSaveMenu(menu)
+    }
   })
 }
 
@@ -375,6 +436,7 @@ export function deleteMenu(id: string) {
   mutate((db) => {
     db.menus = db.menus.filter((m) => m.id !== id)
   })
+  syncDeleteMenu(id)
 }
 
 // ------------------------------------------------------------------ reviews
@@ -388,17 +450,20 @@ export function listReviews(restaurantId?: string): Review[] {
 export type ReviewInput = Omit<Review, 'id' | 'createdAt'>
 
 export function createReview(input: ReviewInput): Review {
-  return mutate((db) => {
+  const review = mutate((db) => {
     const review: Review = { ...input, id: uid('rev'), createdAt: new Date().toISOString() }
     db.reviews.push(review)
     return review
   })
+  syncSaveReview(review)
+  return review
 }
 
 export function deleteReview(id: string) {
   mutate((db) => {
     db.reviews = db.reviews.filter((r) => r.id !== id)
   })
+  syncDeleteReview(id)
 }
 
 // ------------------------------------------------------------- team members
@@ -410,7 +475,7 @@ export function listTeamMembers(): TeamMember[] {
 }
 
 export function createTeamMember(input: TeamMemberInput): TeamMember {
-  return mutate((db) => {
+  const member = mutate((db) => {
     if (!db.teamMembers) db.teamMembers = []
     const member: TeamMember = {
       ...input,
@@ -420,13 +485,18 @@ export function createTeamMember(input: TeamMemberInput): TeamMember {
     db.teamMembers.push(member)
     return member
   })
+  syncSaveTeamMember(member)
+  return member
 }
 
 export function updateTeamMember(id: string, input: Partial<TeamMemberInput>) {
   mutate((db) => {
     if (!db.teamMembers) db.teamMembers = []
     const member = db.teamMembers.find((m) => m.id === id)
-    if (member) Object.assign(member, input)
+    if (member) {
+      Object.assign(member, input)
+      syncSaveTeamMember(member)
+    }
   })
 }
 
@@ -435,6 +505,7 @@ export function deleteTeamMember(id: string) {
     if (!db.teamMembers) db.teamMembers = []
     db.teamMembers = db.teamMembers.filter((m) => m.id !== id)
   })
+  syncDeleteTeamMember(id)
 }
 
 // --------------------------------------------------------------- joined views
