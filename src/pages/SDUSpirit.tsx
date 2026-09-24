@@ -444,73 +444,7 @@ export function SDUSpirit() {
           </div>
         </div>
       </section>
-
-      {/* ------------------------------------------- Student Cafeteria Code */}
-      <section className="mt-20 rounded-3xl bg-gradient-to-br from-navy-900 via-navy-800 to-slate-900 p-8 sm:p-12 text-white shadow-lift">
-        <div className="max-w-3xl">
-          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3.5 py-1.5 text-xs font-semibold text-brand-300">
-            <Icon name="cap" className="h-4 w-4" />
-            วัฒนธรรมชาวสวนดุสิต
-          </span>
-          <h2 className="mt-4 text-2xl sm:text-3xl font-bold text-white">
-            กฎ 4 ข้อในการรับประทานอาหารและยืนถ่ายรูปด้วย SDU Spirit
-          </h2>
-          <p className="mt-3 text-sm sm:text-base leading-relaxed text-navy-100/90">
-            แนวปฏิบัติง่าย ๆ ที่นักศึกษาสวนดุสิตสามารถนำไปใช้ในชีวิตประจำวัน
-            ทั้งในโรงอาหาร ร้านรอบมหาวิทยาลัย และการร่วมกิจกรรมต่าง ๆ
-          </p>
-        </div>
-
-        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[
-            {
-              title: '1. ยืนสง่างาม ถูกระเบียบ',
-              desc: 'ยืนตัวตรง อกผาย ไหล่ผึ่ง แต่งเครื่องแบบเรียบร้อย พร้อมรอยยิ้มที่สดใสทั้งเวลาถ่ายรูปและใช้บริการ',
-              icon: 'camera',
-            },
-            {
-              title: '2. เข้าคิวอย่างมีวินัย',
-              desc: 'ต่อแถวสั่งอาหารอย่างเป็นระเบียบ ไม่แซงคิว เคารพสิทธิของเพื่อนนักศึกษาและอาจารย์',
-              icon: 'users',
-            },
-            {
-              title: '3. สุภาพ อ่อนน้อม',
-              desc: 'กล่าวคำว่า “ขอบคุณ” ต่อผู้ปรุงอาหารและผู้ให้บริการทุกครั้งด้วยความจริงใจและอ่อนน้อมถ่อมตน',
-              icon: 'heart',
-            },
-            {
-              title: '4. รับผิดชอบต่อพื้นที่',
-              desc: 'เมื่อรับประทานเสร็จ นำภาชนะไปเก็บยังจุดที่กำหนด เช็ดทำความสะอาดโต๊ะเพื่อผู้ใช้บริการคนถัดไป',
-              icon: 'check',
-            },
-          ].map((rule) => (
-            <div
-              key={rule.title}
-              className="rounded-2xl bg-white/10 p-5 ring-1 ring-white/15 backdrop-blur-xs"
-            >
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold-400 text-navy-950 font-bold">
-                <Icon name={rule.icon as IconName} className="h-5 w-5" />
-              </span>
-              <h3 className="mt-4 text-base font-bold text-white">{rule.title}</h3>
-              <p className="mt-2 text-xs leading-relaxed text-navy-100/80">{rule.desc}</p>
-            </div>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-white/15 pt-8">
-          <p className="text-xs text-navy-100/70">
-            โปรเจกต์คู่มือร้านอาหาร Suan Dusit Food Guide — เพื่อการศึกษาในรายวิชา พลังสวนดุสิต
-          </p>
-          <div className="flex gap-3">
-            <ButtonLink to="/team" variant="outline" size="sm" className="text-white border-white/30 hover:bg-white/10">
-              สมาชิกผู้จัดทำ
-            </ButtonLink>
-            <ButtonLink to="/restaurants" variant="gold" size="sm" iconRight="arrowRight">
-              ค้นหาร้านอาหาร
-            </ButtonLink>
-          </div>
-        </div>
-      </section>
     </div>
   )
 }
+
