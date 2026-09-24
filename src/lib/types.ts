@@ -103,6 +103,7 @@ export interface TeamMember {
   studentId: string
   role: string
   faculty: string
+  major: string
   image: string
   bio: string
   sortOrder: number

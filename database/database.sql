@@ -195,6 +195,7 @@ CREATE TABLE `team_members` (
   `student_id`  VARCHAR(30)   NOT NULL DEFAULT '',
   `role`        VARCHAR(120)  NOT NULL DEFAULT '',
   `faculty`     VARCHAR(150)  NOT NULL DEFAULT '',
+  `major`       VARCHAR(150)  NOT NULL DEFAULT '',
   `image`       MEDIUMTEXT    NOT NULL,
   `bio`         TEXT          NOT NULL,
   `sort_order`  INT           NOT NULL DEFAULT 0,

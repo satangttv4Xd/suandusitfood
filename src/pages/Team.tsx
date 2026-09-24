@@ -77,10 +77,17 @@ export function Team() {
                       {member.role}
                     </p>
                   )}
-                  {member.faculty && (
+                  {(member.faculty || member.major) && (
                     <p className="mt-1 flex items-center gap-1.5 text-xs text-muted">
                       <Icon name="cap" className="h-3.5 w-3.5 shrink-0 text-brand-400" />
-                      <span>{member.faculty}</span>
+                      <span>
+                        {[
+                          member.faculty,
+                          member.major ? `สาขา${member.major.replace(/^สาขา/, '')}` : '',
+                        ]
+                          .filter(Boolean)
+                          .join(' · ')}
+                      </span>
                     </p>
                   )}
                 </div>

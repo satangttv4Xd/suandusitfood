@@ -23,6 +23,7 @@ interface MemberDraft {
   studentId: string
   role: string
   faculty: string
+  major: string
   image: string
   bio: string
   sortOrder: string
@@ -33,6 +34,7 @@ const blank: MemberDraft = {
   studentId: '',
   role: '',
   faculty: '',
+  major: '',
   image: '',
   bio: '',
   sortOrder: '0',
@@ -52,7 +54,10 @@ export function AdminTeam() {
 
   const rows = useMemo(() => {
     return members.filter((member) =>
-      matches(`${member.name} ${member.studentId} ${member.role} ${member.faculty}`, query.trim()),
+      matches(
+        `${member.name} ${member.studentId} ${member.role} ${member.faculty} ${member.major}`,
+        query.trim(),
+      ),
     )
   }, [members, query])
 
@@ -70,6 +75,7 @@ export function AdminTeam() {
       studentId: member.studentId,
       role: member.role,
       faculty: member.faculty,
+      major: member.major || '',
       image: member.image,
       bio: member.bio,
       sortOrder: String(member.sortOrder),
@@ -99,6 +105,7 @@ export function AdminTeam() {
       studentId: draft.studentId.trim(),
       role: draft.role.trim(),
       faculty: draft.faculty.trim(),
+      major: draft.major.trim(),
       image: draft.image,
       bio: draft.bio.trim(),
       sortOrder: Number(draft.sortOrder) || 0,
@@ -203,9 +210,14 @@ export function AdminTeam() {
                       {member.studentId}
                     </Badge>
                   )}
-                  {member.faculty && (
+                  {(member.faculty || member.major) && (
                     <p className="mt-1 truncate text-xs text-muted">
-                      {member.faculty}
+                      {[
+                        member.faculty,
+                        member.major ? `สาขา${member.major.replace(/^สาขา/, '')}` : '',
+                      ]
+                        .filter(Boolean)
+                        .join(' · ')}
                     </p>
                   )}
                 </div>
@@ -270,22 +282,31 @@ export function AdminTeam() {
             </Field>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-2">
-            <Field label="บทบาท / หน้าที่" htmlFor="member-role" required error={errors.role}>
-              <Input
-                id="member-role"
-                value={draft.role}
-                onChange={(event) => setDraft({ ...draft, role: event.target.value })}
-                placeholder="เช่น หัวหน้าโครงการ / พัฒนาเว็บไซต์"
-              />
-            </Field>
+          <Field label="บทบาท / หน้าที่" htmlFor="member-role" required error={errors.role}>
+            <Input
+              id="member-role"
+              value={draft.role}
+              onChange={(event) => setDraft({ ...draft, role: event.target.value })}
+              placeholder="เช่น หัวหน้าโครงการ / พัฒนาเว็บไซต์"
+            />
+          </Field>
 
-            <Field label="คณะ / สาขาวิชา" htmlFor="member-faculty">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <Field label="คณะ" htmlFor="member-faculty">
               <Input
                 id="member-faculty"
                 value={draft.faculty}
                 onChange={(event) => setDraft({ ...draft, faculty: event.target.value })}
                 placeholder="เช่น คณะวิทยาศาสตร์และเทคโนโลยี"
+              />
+            </Field>
+
+            <Field label="สาขาวิชา" htmlFor="member-major">
+              <Input
+                id="member-major"
+                value={draft.major}
+                onChange={(event) => setDraft({ ...draft, major: event.target.value })}
+                placeholder="เช่น วิทยาการคอมพิวเตอร์"
               />
             </Field>
           </div>

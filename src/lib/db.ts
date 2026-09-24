@@ -96,7 +96,10 @@ function normalise(raw: unknown): Database {
     menus: Array.isArray(input.menus) ? input.menus : base.menus,
     reviews: Array.isArray(input.reviews) ? input.reviews : base.reviews,
     teamMembers: Array.isArray(input.teamMembers)
-      ? input.teamMembers
+      ? input.teamMembers.map((m) => ({
+          ...m,
+          major: typeof m.major === 'string' ? m.major : '',
+        }))
       : structuredClone(seedTeamMembers),
   }
 }
