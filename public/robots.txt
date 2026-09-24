@@ -3,4 +3,4 @@
 # results too, so it never turns up in a Google search for the site.
 User-agent: *
 Disallow: /admin
-power by satangttv4
+Powered by satangttv4

@@ -5,7 +5,7 @@ import { Badge, ButtonLink, EmptyState, OpenBadge } from '../../components/ui'
 import { getStorageUsage } from '../../lib/db'
 import { formatBytes } from '../../lib/image'
 import { formatPriceRange, formatRelative, isOpenNow, openStatusLabel } from '../../lib/format'
-import { useCategories, useClockTick, useDatabase, useRestaurantViews } from '../../lib/hooks'
+import { useClockTick, useDatabase, useRestaurantViews } from '../../lib/hooks'
 import { AdminPageHeader } from './AdminLayout'
 
 const cards: {
@@ -16,8 +16,8 @@ const cards: {
   to: string
 }[] = [
   { key: 'restaurants', label: 'ร้านอาหารทั้งหมด', icon: 'store', tint: 'bg-brand-50 text-brand-600', to: '/admin/restaurants' },
-  { key: 'categories', label: 'หมวดหมู่', icon: 'tag', tint: 'bg-navy-50 text-navy-700', to: '/admin/categories' },
   { key: 'menus', label: 'เมนูอาหาร', icon: 'utensils', tint: 'bg-gold-300/25 text-gold-700', to: '/admin/menus' },
+  { key: 'reviews', label: 'รีวิวทั้งหมด', icon: 'message', tint: 'bg-navy-50 text-navy-700', to: '/admin/reviews' },
   { key: 'openNow', label: 'ร้านที่เปิดอยู่ตอนนี้', icon: 'clock', tint: 'bg-emerald-50 text-emerald-700', to: '/restaurants?open=1' },
 ]
 
@@ -25,12 +25,11 @@ export function Dashboard() {
   useClockTick()
   const database = useDatabase()
   const restaurants = useRestaurantViews()
-  const categories = useCategories()
 
   const stats: Record<string, number> = {
     restaurants: restaurants.length,
-    categories: categories.length,
     menus: database.menus.length,
+    reviews: database.reviews.length,
     openNow: database.restaurants.filter((restaurant) => isOpenNow(restaurant)).length,
   }
 

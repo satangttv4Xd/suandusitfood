@@ -12,8 +12,16 @@
  * what makes a localStorage-backed gallery practical at all.
  */
 
-export const ACCEPTED_TYPES = ['image/jpeg', 'image/png', 'image/webp'] as const
-export const ACCEPT_ATTRIBUTE = '.jpg,.jpeg,.png,.webp,image/jpeg,image/png,image/webp'
+export const ACCEPTED_TYPES = [
+  'image/jpeg',
+  'image/png',
+  'image/webp',
+  'image/heic',
+  'image/heif',
+] as const
+
+export const ACCEPT_ATTRIBUTE =
+  '.jpg,.jpeg,.png,.webp,.heic,.heif,image/jpeg,image/png,image/webp,image/heic,image/heif'
 
 /** Largest file we will even try to read. */
 export const MAX_UPLOAD_BYTES = 8 * 1024 * 1024 // 8 MB
@@ -37,10 +45,31 @@ export function formatBytes(bytes: number): string {
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
 }
 
+export function isHeic(file: File | Blob): boolean {
+  const type = file.type ? file.type.toLowerCase() : ''
+  if (type.includes('heic') || type.includes('heif')) {
+    return true
+  }
+  if ('name' in file && typeof file.name === 'string') {
+    return /\.(heic|heif)$/i.test(file.name)
+  }
+  return false
+}
+
+function isAccepted(file: File): boolean {
+  if (ACCEPTED_TYPES.includes(file.type as (typeof ACCEPTED_TYPES)[number])) {
+    return true
+  }
+  if (/\.(jpe?g|png|webp|heic|heif)$/i.test(file.name)) {
+    return true
+  }
+  return false
+}
+
 function validate(file: File) {
-  if (!ACCEPTED_TYPES.includes(file.type as (typeof ACCEPTED_TYPES)[number])) {
+  if (!isAccepted(file)) {
     throw new ImageError(
-      `ไฟล์ "${file.name}" ไม่รองรับ — อนุญาตเฉพาะ JPG, JPEG, PNG และ WEBP เท่านั้น`,
+      `ไฟล์ "${file.name}" ไม่รองรับ — อนุญาตเฉพาะ JPG, JPEG, PNG, WEBP และ HEIC เท่านั้น`,
     )
   }
   if (file.size > MAX_UPLOAD_BYTES) {
@@ -50,26 +79,157 @@ function validate(file: File) {
   }
 }
 
-async function decode(file: File): Promise<ImageBitmap | HTMLImageElement> {
+async function decodeHeicWithLibheif(file: File | Blob): Promise<HTMLCanvasElement> {
+  const mod = await import('libheif-js/wasm-bundle')
+  const libheif = ((mod as { default?: unknown }).default || mod) as any
+  const buffer = await file.arrayBuffer()
+  const bytes = new Uint8Array(buffer)
+  const decoder = new libheif.HeifDecoder()
+  const data = decoder.decode(bytes)
+  if (!data || !data.length) {
+    throw new Error('ไม่พบข้อมูลภาพในไฟล์ HEIC')
+  }
+  const image = data[0]
+  const width = image.get_width()
+  const height = image.get_height()
+
+  const canvas = document.createElement('canvas')
+  canvas.width = width
+  canvas.height = height
+  const ctx = canvas.getContext('2d')
+  if (!ctx) throw new Error('ไม่สามารถสร้าง canvas context สำหรับถอดรหัสภาพได้')
+
+  const imageData = ctx.createImageData(width, height)
+  await new Promise<void>((resolve, reject) => {
+    image.display(imageData, (displayData: unknown) => {
+      if (!displayData) {
+        return reject(new Error('ไม่สามารถถอดรหัสข้อมูลภาพ HEIF ได้'))
+      }
+      resolve()
+    })
+  })
+
+  ctx.putImageData(imageData, 0, 0)
+
+  // Cleanup WebAssembly decoder memory
+  try {
+    for (const img of data) {
+      if (typeof img.free === 'function') img.free()
+    }
+    if (decoder.decoder && typeof decoder.decoder.delete === 'function') {
+      decoder.decoder.delete()
+    }
+  } catch {
+    // ignore cleanup
+  }
+
+  return canvas
+}
+
+async function tryNativeDecode(file: File | Blob): Promise<ImageBitmap | HTMLImageElement | null> {
+  if ('createImageBitmap' in window) {
+    try {
+      const bmp = await createImageBitmap(file)
+      if (bmp.width > 0 && bmp.height > 0) return bmp
+    } catch {
+      // Not supported natively
+    }
+  }
+  return null
+}
+
+async function decodeStandard(file: File | Blob, fileName: string): Promise<ImageBitmap | HTMLImageElement> {
   if ('createImageBitmap' in window) {
     try {
       return await createImageBitmap(file)
     } catch {
-      throw new ImageError(`ไฟล์ "${file.name}" ไม่ใช่ไฟล์รูปภาพที่อ่านได้`)
+      // Fallback to Image element below
     }
   }
-  // Safari < 17 and friends
   const url = URL.createObjectURL(file)
   try {
     return await new Promise<HTMLImageElement>((resolve, reject) => {
       const img = new Image()
       img.onload = () => resolve(img)
-      img.onerror = () => reject(new ImageError(`ไฟล์ "${file.name}" ไม่ใช่ไฟล์รูปภาพที่อ่านได้`))
+      img.onerror = () => reject(new ImageError(`ไฟล์ "${fileName}" ไม่ใช่ไฟล์รูปภาพที่อ่านได้`))
       img.src = url
     })
   } finally {
     URL.revokeObjectURL(url)
   }
+}
+
+async function decodeHeic(file: File): Promise<ImageBitmap | HTMLImageElement | HTMLCanvasElement> {
+  // 1. Try native decoding first (Safari iOS/macOS can decode HEIC natively)
+  const native = await tryNativeDecode(file)
+  if (native) return native
+
+  // 2. Try modern heic-to (hoppergee/heic-to with bundled modern libde265 HEVC decoder in web worker)
+  try {
+    const { heicTo } = await import('heic-to')
+    try {
+      if ('createImageBitmap' in window) {
+        return await heicTo({ blob: file, type: 'bitmap' })
+      }
+    } catch (bitmapErr) {
+      console.warn('heic-to bitmap decoding failed, trying jpeg blob mode:', bitmapErr)
+    }
+    const jpegBlob = await heicTo({ blob: file, type: 'image/jpeg', quality: 0.9 })
+    return await decodeStandard(jpegBlob, file.name)
+  } catch (err0) {
+    console.warn('heic-to failed, trying libheif-js:', err0)
+  }
+
+  // 3. Try libheif-js (v1.23.2)
+  try {
+    return await decodeHeicWithLibheif(file)
+  } catch (err1) {
+    console.warn('libheif-js decoding failed, trying fallback converters:', err1)
+  }
+
+  // 4. Fallback to @keeratita/heic-converter
+  try {
+    const { convertHeic } = await import('@keeratita/heic-converter')
+    const blob = await convertHeic(file, { to: 'jpeg', quality: 0.9 })
+    return await decodeStandard(blob, file.name)
+  } catch (err2) {
+    console.warn('@keeratita/heic-converter fallback failed:', err2)
+  }
+
+  // 5. Fallback to heic2any
+  try {
+    const mod = await import('heic2any')
+    const fn = (mod as { default?: unknown }).default || mod
+    const heic2any = fn as (options: {
+      blob: Blob
+      toType?: string
+      quality?: number
+    }) => Promise<Blob | Blob[]>
+    const result = await heic2any({
+      blob: file,
+      toType: 'image/jpeg',
+      quality: 0.9,
+    })
+    const jpegBlob = Array.isArray(result) ? result[0] : result
+    return await decodeStandard(jpegBlob, file.name)
+  } catch (err3) {
+    console.error('All HEIC decoders failed:', err3)
+    const msg =
+      err3 instanceof Error
+        ? err3.message
+        : typeof err3 === 'object' && err3 && 'message' in err3
+          ? String((err3 as { message: unknown }).message)
+          : 'รูปแบบไม่ถูกต้องหรือไฟล์เสียหาย'
+    throw new ImageError(`ไม่สามารถแปลงไฟล์ HEIC "${file.name}": ${msg}`)
+  }
+}
+
+async function decode(file: File): Promise<ImageBitmap | HTMLImageElement | HTMLCanvasElement> {
+  if (isHeic(file)) {
+    return await decodeHeic(file)
+  }
+
+  return await decodeStandard(file, file.name)
 }
 
 let webpSupport: boolean | null = null
@@ -100,7 +260,9 @@ export async function processImage(file: File, maxEdge = MAX_EDGE): Promise<Proc
   if (!ctx) throw new ImageError('เบราว์เซอร์ไม่รองรับการประมวลผลรูปภาพ')
   ctx.imageSmoothingQuality = 'high'
   ctx.drawImage(source as CanvasImageSource, 0, 0, width, height)
-  if ('close' in source) source.close()
+  if ('close' in source && typeof (source as ImageBitmap).close === 'function') {
+    ;(source as ImageBitmap).close()
+  }
 
   const mime = supportsWebp() ? 'image/webp' : 'image/jpeg'
   const dataUrl = canvas.toDataURL(mime, 0.82)

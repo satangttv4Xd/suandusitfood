@@ -65,9 +65,9 @@ export function Home() {
             </span>
 
             <h1 className="mt-5 text-4xl leading-[1.12] sm:text-5xl lg:text-[3.4rem]">
-              ค้นหาร้านอร่อย
+              ร้านอาหารแนะนำ
               <br />
-              <span className="text-brand-600">ใกล้สวนดุสิต</span>
+              <span className="text-brand-600">ในสวนดุสิต</span>
             </h1>
 
             <p className="mt-5 max-w-xl text-lg text-body">
@@ -185,8 +185,8 @@ export function Home() {
               title="หมวดหมู่ร้านอาหาร"
               description="เลือกจากสิ่งที่อยากกินวันนี้ แล้วดูเฉพาะร้านในหมวดนั้น"
               action={
-                <ButtonLink to="/categories" variant="outline" iconRight="arrowRight">
-                  ดูทุกหมวดหมู่
+                <ButtonLink to="/restaurants" variant="outline" iconRight="arrowRight">
+                  ดูร้านทั้งหมด
                 </ButtonLink>
               }
             />

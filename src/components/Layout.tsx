@@ -6,7 +6,6 @@ import { Icon } from './Icon'
 const NAV = [
   { to: '/', label: 'หน้าแรก', end: true },
   { to: '/restaurants', label: 'ร้านอาหาร', end: false },
-  { to: '/categories', label: 'หมวดหมู่', end: false },
   { to: '/map', label: 'แผนที่', end: false },
   { to: '/about', label: 'เกี่ยวกับเรา', end: false },
 ]
@@ -179,7 +178,7 @@ function Footer() {
 
       <div className="border-t border-white/10">
         <p className="mx-auto max-w-7xl px-4 py-5 text-center text-sm text-navy-100/75 sm:px-6 lg:px-8">
-          © {new Date().getFullYear()} Suan Dusit Food Guide — จัดทำเพื่อการศึกษา
+          © {new Date().getFullYear()} Suan Dusit Food Guide — Powered by satangttv4
         </p>
       </div>
     </footer>

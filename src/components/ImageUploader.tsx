@@ -113,7 +113,7 @@ export function ImageUploader({
           </span>
           <span className="font-semibold text-ink">{busy ? 'กำลังประมวลผล…' : label}</span>
           <span className="text-sm text-muted">
-            ลากไฟล์มาวาง หรือคลิกเพื่อเลือก · JPG, JPEG, PNG, WEBP · ไม่เกิน{' '}
+            ลากไฟล์มาวาง หรือคลิกเพื่อเลือก · JPG, PNG, WEBP, HEIC · ไม่เกิน{' '}
             {formatBytes(MAX_UPLOAD_BYTES)}
           </span>
         </label>
@@ -293,7 +293,7 @@ export function GalleryUploader({ value, onChange, max = 8 }: GalleryUploaderPro
           {busy ? 'กำลังประมวลผล…' : 'เพิ่มรูปเพิ่มเติม (เลือกได้หลายไฟล์)'}
         </span>
         <span className="text-sm text-muted">
-          {value.length}/{max} รูป · JPG, JPEG, PNG, WEBP
+          {value.length}/{max} รูป · JPG, PNG, WEBP, HEIC
         </span>
       </label>
 

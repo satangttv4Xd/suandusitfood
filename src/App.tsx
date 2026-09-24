@@ -1,14 +1,12 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Route, Routes, useLocation } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Layout } from './components/Layout'
 import { ToastProvider } from './components/Toast'
 import { About, NotFound } from './pages/About'
-import { Categories } from './pages/Categories'
 import { Home } from './pages/Home'
 import { MapPage } from './pages/MapPage'
 import { Restaurant } from './pages/Restaurant'
 import { Restaurants } from './pages/Restaurants'
-import { AdminCategories } from './pages/admin/AdminCategories'
 import { AdminLayout, RequireAuth } from './pages/admin/AdminLayout'
 import { AdminMenus } from './pages/admin/AdminMenus'
 import { AdminRestaurants } from './pages/admin/AdminRestaurants'
@@ -38,7 +36,7 @@ export default function App() {
             <Route index element={<Home />} />
             <Route path="restaurants" element={<Restaurants />} />
             <Route path="restaurant/:slug" element={<Restaurant />} />
-            <Route path="categories" element={<Categories />} />
+            <Route path="categories" element={<Navigate to="/restaurants" replace />} />
             <Route path="map" element={<MapPage />} />
             <Route path="about" element={<About />} />
             <Route path="*" element={<NotFound />} />
@@ -53,7 +51,7 @@ export default function App() {
               <Route path="restaurants/new" element={<RestaurantForm />} />
               <Route path="restaurants/:id" element={<RestaurantForm />} />
               <Route path="menus" element={<AdminMenus />} />
-              <Route path="categories" element={<AdminCategories />} />
+              <Route path="categories" element={<Navigate to="/admin" replace />} />
               <Route path="reviews" element={<AdminReviews />} />
               <Route path="settings" element={<AdminSettings />} />
             </Route>

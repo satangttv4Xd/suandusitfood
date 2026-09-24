@@ -32,9 +32,7 @@ export function About() {
         <p className="mb-2 text-xs font-bold tracking-[0.18em] text-brand-600 uppercase">About</p>
         <h1 className="text-3xl sm:text-4xl">เกี่ยวกับ Suan Dusit Food Guide</h1>
         <p className="mt-4 text-lg text-body">
-          เว็บไซต์นี้รวบรวมร้านอาหารภายในและรอบมหาวิทยาลัยสวนดุสิตไว้ในที่เดียว
-          เพื่อให้นักศึกษา อาจารย์ และบุคลากรหาของกินได้เร็วขึ้น
-          โดยเฉพาะช่วงพักเที่ยงที่มีเวลาจำกัด
+          โปรเจตคนี้สร้างขึ้นในรายวิชา พลังสวนดุสิต โดยนำเสนอเมนูแนะนำ ของแต่ละร้านรั้วในมหาวิทยาลัยสวนดุสิต
         </p>
       </header>
 
@@ -113,6 +111,10 @@ export function About() {
             <Icon name="info" className="mt-1 h-4 w-4 shrink-0 text-brand-500" />
             ข้อมูลร้านตัวอย่างที่มาพร้อมระบบเป็นข้อมูลสมมติสำหรับทดสอบ
             ผู้ดูแลระบบสามารถแก้ไขหรือลบได้ทั้งหมด
+          </li>
+          <li className="flex gap-3">
+            <Icon name="info" className="mt-1 h-4 w-4 shrink-0 text-brand-500" />
+            จัดทำขึ้้นสำหรับรายวิชา พลังสวนดุสิต
           </li>
         </ul>
       </section>
