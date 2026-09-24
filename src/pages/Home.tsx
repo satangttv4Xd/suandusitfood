@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom'
 import { CategoryCard } from '../components/CategoryCard'
 import { Icon } from '../components/Icon'
 import { RestaurantCard, RestaurantRow } from '../components/RestaurantCard'
-import { SearchBar } from '../components/SearchBar'
 import { SmartImage } from '../components/SmartImage'
 import { ButtonLink, EmptyState, SectionHeading } from '../components/ui'
 import { formatPriceRange } from '../lib/format'
 import { useCategories, useClockTick, useRestaurantViews } from '../lib/hooks'
 
-const QUICK_SEARCHES = ['กะเพรา', 'ก๋วยเตี๋ยว', 'กาแฟ', 'ของหวาน', 'ข้าวมันไก่']
 
 export function Home() {
   useClockTick()
@@ -38,7 +36,6 @@ export function Home() {
     [restaurants],
   )
 
-  const menuCount = restaurants.reduce((total, restaurant) => total + restaurant.menus.length, 0)
 
   return (
     <>
@@ -75,35 +72,46 @@ export function Home() {
               และของหวาน พร้อมราคา เวลาเปิด-ปิด เมนูแนะนำ และแผนที่ครบในที่เดียว
             </p>
 
-            <div className="mt-8 max-w-2xl">
-              <SearchBar />
+            <div className="mt-8 flex flex-wrap items-center gap-3.5">
+              <ButtonLink to="/restaurants" size="lg" iconRight="arrowRight" className="shadow-md">
+                ดูร้านอาหารทั้งหมด
+              </ButtonLink>
+              <ButtonLink to="/map" size="lg" variant="outline" icon="map" className="shadow-xs">
+                ดูแผนที่ร้าน
+              </ButtonLink>
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center gap-2">
-              <span className="text-sm text-muted">ค้นหายอดฮิต:</span>
-              {QUICK_SEARCHES.map((term) => (
-                <Link
-                  key={term}
-                  to={`/restaurants?q=${encodeURIComponent(term)}`}
-                  className="cursor-pointer rounded-full bg-white px-3 py-1.5 text-sm font-medium text-body ring-1 ring-line transition-colors duration-200 hover:bg-brand-50 hover:text-brand-700 hover:ring-brand-200"
-                >
-                  {term}
-                </Link>
-              ))}
-            </div>
-
-            <dl className="mt-10 flex flex-wrap gap-x-10 gap-y-4">
-              {[
-                { label: 'ร้านอาหาร', value: restaurants.length },
-                { label: 'หมวดหมู่', value: categories.length },
-                { label: 'เมนูแนะนำ', value: menuCount },
-              ].map((stat) => (
-                <div key={stat.label}>
-                  <dt className="text-sm text-muted">{stat.label}</dt>
-                  <dd className="font-display text-3xl text-ink">{stat.value}</dd>
+            <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-3">
+              <div className="flex items-center gap-3 rounded-2xl bg-white/80 p-3.5 shadow-xs ring-1 ring-line/80 backdrop-blur-xs">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-50 text-brand-600">
+                  <Icon name="store" className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs text-muted">รวมร้านอร่อย</p>
+                  <p className="text-sm font-bold text-ink">รอบ ม.สวนดุสิต</p>
                 </div>
-              ))}
-            </dl>
+              </div>
+
+              <div className="flex items-center gap-3 rounded-2xl bg-white/80 p-3.5 shadow-xs ring-1 ring-line/80 backdrop-blur-xs">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+                  <Icon name="clock" className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs text-muted">เวลาเปิด-ปิด</p>
+                  <p className="text-sm font-bold text-ink">อัปเดตสถานะร้าน</p>
+                </div>
+              </div>
+
+              <div className="col-span-2 flex items-center gap-3 rounded-2xl bg-white/80 p-3.5 shadow-xs ring-1 ring-line/80 backdrop-blur-xs sm:col-span-1">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+                  <Icon name="map" className="h-5 w-5" />
+                </span>
+                <div className="min-w-0">
+                  <p className="text-xs text-muted">พิกัดแผนที่</p>
+                  <p className="text-sm font-bold text-ink">นำทางไปร้านได้</p>
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* A live collage of whatever is currently in the database. */}
