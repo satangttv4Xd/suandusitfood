@@ -1,18 +1,16 @@
 import { useMemo } from 'react'
 import { Link } from 'react-router-dom'
-import { CategoryCard } from '../components/CategoryCard'
 import { Icon } from '../components/Icon'
 import { RestaurantCard, RestaurantRow } from '../components/RestaurantCard'
 import { SmartImage } from '../components/SmartImage'
 import { ButtonLink, EmptyState, SectionHeading } from '../components/ui'
 import { formatPriceRange } from '../lib/format'
-import { useCategories, useClockTick, useRestaurantViews } from '../lib/hooks'
+import { useClockTick, useRestaurantViews } from '../lib/hooks'
 
 
 export function Home() {
   useClockTick()
   const restaurants = useRestaurantViews()
-  const categories = useCategories()
 
   const featured = useMemo(() => {
     const picks = restaurants.filter((restaurant) => restaurant.featured)
@@ -184,34 +182,6 @@ export function Home() {
         )}
       </section>
 
-      {/* ------------------------------------------------- หมวดหมู่ */}
-      {categories.length > 0 && (
-        <section className="bg-cream-deep/60 py-16">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <SectionHeading
-              eyebrow="Categories"
-              title="หมวดหมู่ร้านอาหาร"
-              description="เลือกจากสิ่งที่อยากกินวันนี้ แล้วดูเฉพาะร้านในหมวดนั้น"
-              action={
-                <ButtonLink to="/restaurants" variant="outline" iconRight="arrowRight">
-                  ดูร้านทั้งหมด
-                </ButtonLink>
-              }
-            />
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-              {categories.slice(0, 6).map((category) => (
-                <CategoryCard
-                  key={category.id}
-                  category={category}
-                  count={
-                    restaurants.filter((restaurant) => restaurant.categoryId === category.id).length
-                  }
-                />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
 
       {/* --------------------------------------------- ร้านยอดนิยม */}
       {popular.length > 0 && (
