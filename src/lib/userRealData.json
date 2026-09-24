@@ -1,0 +1,648 @@
+{
+  "version": 1,
+  "users": [
+    {
+      "id": "user-mufbkgk7-4yt7kz",
+      "username": "admin",
+      "displayName": "ผู้ดูแลระบบ",
+      "passwordHash": "wnj6INmPM9eLBvgSRi+yVE9BjS2wULsSREXI0hqJaBw=",
+      "salt": "HSmwlcx3R4HcGjTHkaUlzQ==",
+      "role": "admin",
+      "createdAt": "2026-09-24T09:18:23.231Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": "cat-tamsang",
+      "name": "อาหารตามสั่ง",
+      "slug": "tam-sang",
+      "description": "ผัดกะเพรา ข้าวผัด ราดหน้า สั่งได้ทุกอย่างจานร้อน ๆ",
+      "icon": "wok",
+      "image": "",
+      "sortOrder": 1,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "cat-noodle",
+      "name": "ก๋วยเตี๋ยว",
+      "slug": "noodle",
+      "description": "ก๋วยเตี๋ยวเรือ เย็นตาโฟ บะหมี่ ต้มยำ น้ำใส",
+      "icon": "noodle",
+      "image": "",
+      "sortOrder": 2,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "cat-cafe",
+      "name": "คาเฟ่",
+      "slug": "cafe",
+      "description": "กาแฟ ชา ที่นั่งอ่านหนังสือ Wi-Fi แรง ปลั๊กครบ",
+      "icon": "coffee",
+      "image": "",
+      "sortOrder": 3,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "cat-dessert",
+      "name": "ของหวาน",
+      "slug": "dessert",
+      "description": "ขนมไทย บิงซู ไอศกรีม เบเกอรี่",
+      "icon": "dessert",
+      "image": "",
+      "sortOrder": 4,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "cat-budget",
+      "name": "ร้านอาหารราคาประหยัด",
+      "slug": "budget",
+      "description": "จานละไม่เกิน 50 บาท อิ่มครบทุกวัน",
+      "icon": "coin",
+      "image": "",
+      "sortOrder": 5,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "cat-near",
+      "name": "ร้านอาหารใกล้มหาวิทยาลัย",
+      "slug": "near-campus",
+      "description": "เดินถึงจากประตูมหาวิทยาลัยภายใน 5 นาที",
+      "icon": "pin",
+      "image": "",
+      "sortOrder": 6,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    }
+  ],
+  "restaurants": [
+    {
+      "id": "res-khrua-yai",
+      "name": "ข้าวมันไก่ อาคาร11",
+      "slug": "khrua-khun-yai",
+      "coverImage": "/uploads/res-1-mufsvrlw-n8q4.webp",
+      "description": "ข้าวมันไก่ ตึก11  มีไก่ให้เลือก3แบบ ไก่ต้ม ไก่ย่าง ไก่ทอด  เพิ่มข้าว 5 บาท แม่ค้าน่ารักนิสัยดี น้ำซุปกลมกล่อม ไก่ทอดกรอบ ไก่ย่างหอม  นำไก่มาผสมได้",
+      "categoryId": "cat-tamsang",
+      "priceMin": 45,
+      "priceAvg": 50,
+      "rating": 4.6,
+      "openTime": "07:00",
+      "closeTime": "16:00",
+      "openDays": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat"
+      ],
+      "phone": "02-241-0111",
+      "facebook": "https://www.facebook.com/",
+      "instagram": "",
+      "website": "",
+      "address": "ซอยระนอง 2 แขวงถนนนครไชยศรี เขตดุสิต กรุงเทพมหานคร 10300",
+      "lat": 13.7768,
+      "lng": 100.5203,
+      "mapUrl": "",
+      "status": "open",
+      "featured": true,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "updatedAt": "2026-09-24T14:28:17.097Z"
+    },
+    {
+      "id": "res-ruea-nung",
+      "name": "Nobicha (โนบิชา)",
+      "slug": "kuaytiao-ruea-pi-num",
+      "coverImage": "/uploads/res-2-mufsvrlw-39dc.webp",
+      "description": "ชารสเข้มข้นราคาประหยัด ไข่มุกหนึบเคี้ยวอร่อย รอคิวไม่นาน",
+      "categoryId": "cat-cafe",
+      "priceMin": 30,
+      "priceAvg": 35,
+      "rating": 4.8,
+      "openTime": "08:00",
+      "closeTime": "16:00",
+      "openDays": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ],
+      "phone": "089-222-3344",
+      "facebook": "",
+      "instagram": "https://www.instagram.com/",
+      "website": "",
+      "address": "ถนนสามเสน ใกล้ท่าน้ำเทเวศร์ เขตดุสิต กรุงเทพมหานคร 10300",
+      "lat": 13.7739,
+      "lng": 100.5058,
+      "mapUrl": "",
+      "status": "open",
+      "featured": true,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "updatedAt": "2026-09-24T14:30:39.398Z"
+    },
+    {
+      "id": "res-dusit-brew",
+      "name": "295 meeting point (ซุ้มเขียว)",
+      "slug": "dusit-brew-cafe",
+      "coverImage": "/uploads/res-3-mufsvrlx-sb5a.webp",
+      "description": "295 meeting point (ซุ้มเขียว) ร้านอาหารราคาประหยัด ไข่เจียวทอดใหม่ทุกฟอง หอมอร่อย",
+      "categoryId": "cat-budget",
+      "priceMin": 25,
+      "priceAvg": 50,
+      "rating": 5,
+      "openTime": "08:30",
+      "closeTime": "16:00",
+      "openDays": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "phone": "02-668-7788",
+      "facebook": "https://www.facebook.com/",
+      "instagram": "https://www.instagram.com/",
+      "website": "https://example.com/",
+      "address": "128 ถนนนครราชสีมา แขวงดุสิต เขตดุสิต กรุงเทพมหานคร 10300",
+      "lat": 13.7781,
+      "lng": 100.5171,
+      "mapUrl": "",
+      "status": "open",
+      "featured": true,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "updatedAt": "2026-09-24T14:33:44.537Z"
+    },
+    {
+      "id": "res-bualoy-pa-noi",
+      "name": "Home Bakery",
+      "slug": "bualoy-pa-noi",
+      "coverImage": "/uploads/res-4-mufsvrlx-mmqy.webp",
+      "description": "Home Bakery สวนดุสิต ร้านเบเกอรี่ภายในมหาวิทยาลัยสวนดุสิต มีขนมอบและเบเกอรี่หลากหลาย เหมาะสำหรับนักศึกษา บุคลากร และผู้ที่ต้องการซื้อขนมรับประทานในระหว่างวัน จุดเด่นคือรสชาติอร่อย ราคาเข้าถึงง่าย และมีเมนูให้เลือกหลากหลาย",
+      "categoryId": "cat-dessert",
+      "priceMin": 30,
+      "priceAvg": 40,
+      "rating": 4.7,
+      "openTime": "10:00",
+      "closeTime": "18:00",
+      "openDays": [
+        "tue",
+        "wed",
+        "thu",
+        "fri",
+        "sat",
+        "sun"
+      ],
+      "phone": "081-555-6677",
+      "facebook": "",
+      "instagram": "",
+      "website": "",
+      "address": "ตลาดศรีย่าน ถนนนครไชยศรี เขตดุสิต กรุงเทพมหานคร 10300",
+      "lat": 13.7795,
+      "lng": 100.5138,
+      "mapUrl": "",
+      "status": "open",
+      "featured": true,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "updatedAt": "2026-09-24T14:46:48.743Z"
+    },
+    {
+      "id": "res-sdu-canteen",
+      "name": "ร้านพิซ่า อาคาร12",
+      "slug": "sdu-central-canteen",
+      "coverImage": "/uploads/res-5-mufsvrlx-lp7v.webp",
+      "description": "ร้านพิซซ่าในอาคาร12ทำใหม่ทุกชิ้น อบใหม่หอมอร่อยราคานักศึกษา",
+      "categoryId": "cat-cafe",
+      "priceMin": 45,
+      "priceAvg": 60,
+      "rating": 4.2,
+      "openTime": "07:00",
+      "closeTime": "17:00",
+      "openDays": [
+        "mon",
+        "tue",
+        "wed",
+        "thu",
+        "fri"
+      ],
+      "phone": "02-244-5555",
+      "facebook": "",
+      "instagram": "",
+      "website": "https://www.dusit.ac.th/",
+      "address": "มหาวิทยาลัยสวนดุสิต 295 ถนนนครราชสีมา เขตดุสิต กรุงเทพมหานคร 10300",
+      "lat": 13.7772,
+      "lng": 100.5186,
+      "mapUrl": "",
+      "status": "open",
+      "featured": true,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "updatedAt": "2026-09-24T14:52:56.726Z"
+    }
+  ],
+  "restaurantImages": [
+    {
+      "id": "img-mufmmzpm-fwpnp8",
+      "restaurantId": "res-khrua-yai",
+      "url": "/uploads/gallery-1-mufsvrly-udua.webp",
+      "caption": "",
+      "sortOrder": 0,
+      "createdAt": "2026-09-24T14:28:17.098Z"
+    },
+    {
+      "id": "img-mufmmzpm-b3baoi",
+      "restaurantId": "res-khrua-yai",
+      "url": "/uploads/gallery-2-mufsvrlz-c0oy.webp",
+      "caption": "",
+      "sortOrder": 1,
+      "createdAt": "2026-09-24T14:28:17.098Z"
+    },
+    {
+      "id": "img-mufmq1ip-3bnn64",
+      "restaurantId": "res-ruea-nung",
+      "url": "/uploads/gallery-3-mufsvrm0-1rms.webp",
+      "caption": "",
+      "sortOrder": 0,
+      "createdAt": "2026-09-24T14:30:39.409Z"
+    },
+    {
+      "id": "img-mufmq1ip-ihuqqh",
+      "restaurantId": "res-ruea-nung",
+      "url": "/uploads/gallery-4-mufsvrm1-4o69.webp",
+      "caption": "",
+      "sortOrder": 1,
+      "createdAt": "2026-09-24T14:30:39.409Z"
+    },
+    {
+      "id": "img-mufmu0dd-z161ff",
+      "restaurantId": "res-dusit-brew",
+      "url": "/uploads/gallery-5-mufsvrm1-lkwk.webp",
+      "caption": "",
+      "sortOrder": 0,
+      "createdAt": "2026-09-24T14:33:44.545Z"
+    },
+    {
+      "id": "img-mufmu0dd-y3qrn4",
+      "restaurantId": "res-dusit-brew",
+      "url": "/uploads/gallery-6-mufsvrm1-v6ig.webp",
+      "caption": "",
+      "sortOrder": 1,
+      "createdAt": "2026-09-24T14:33:44.545Z"
+    },
+    {
+      "id": "img-mufmu0dd-biw8q8",
+      "restaurantId": "res-dusit-brew",
+      "url": "/uploads/gallery-7-mufsvrm2-s7rh.webp",
+      "caption": "",
+      "sortOrder": 2,
+      "createdAt": "2026-09-24T14:33:44.545Z"
+    },
+    {
+      "id": "img-mufna5n5-bz1p4w",
+      "restaurantId": "res-bualoy-pa-noi",
+      "url": "/uploads/gallery-8-mufsvrm2-jovw.webp",
+      "caption": "",
+      "sortOrder": 0,
+      "createdAt": "2026-09-24T14:46:17.873Z"
+    },
+    {
+      "id": "img-mufna5n6-7qqyct",
+      "restaurantId": "res-bualoy-pa-noi",
+      "url": "/uploads/gallery-9-mufsvrm2-00a3.webp",
+      "caption": "",
+      "sortOrder": 1,
+      "createdAt": "2026-09-24T14:46:17.874Z"
+    },
+    {
+      "id": "img-mufna5n6-xuanum",
+      "restaurantId": "res-bualoy-pa-noi",
+      "url": "/uploads/gallery-10-mufsvrm3-z4yt.webp",
+      "caption": "",
+      "sortOrder": 2,
+      "createdAt": "2026-09-24T14:46:17.874Z"
+    },
+    {
+      "id": "img-mufnipf6-6md513",
+      "restaurantId": "res-sdu-canteen",
+      "url": "/uploads/gallery-11-mufsvrm3-6vua.webp",
+      "caption": "",
+      "sortOrder": 0,
+      "createdAt": "2026-09-24T14:52:56.754Z"
+    },
+    {
+      "id": "img-mufnipf6-z1g148",
+      "restaurantId": "res-sdu-canteen",
+      "url": "/uploads/gallery-12-mufsvrm3-0e10.webp",
+      "caption": "",
+      "sortOrder": 1,
+      "createdAt": "2026-09-24T14:52:56.754Z"
+    }
+  ],
+  "menus": [
+    {
+      "id": "menu-1",
+      "restaurantId": "res-khrua-yai",
+      "name": "กะเพราหมูสับไข่ดาว",
+      "price": 55,
+      "description": "ไฟแรงกลิ่นหอมกระทะ เผ็ดได้ตามสั่ง",
+      "image": "https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-2",
+      "restaurantId": "res-khrua-yai",
+      "name": "ข้าวผัดกุ้ง",
+      "price": 65,
+      "description": "กุ้งสด 5 ตัว เสิร์ฟพร้อมมะนาวและแตงกวา",
+      "image": "https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-3",
+      "restaurantId": "res-khrua-yai",
+      "name": "ผัดซีอิ๊วหมู",
+      "price": 50,
+      "description": "เส้นใหญ่ผัดไฟแรง ไข่นุ่ม",
+      "image": "https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-4",
+      "restaurantId": "res-khrua-yai",
+      "name": "ต้มยำน้ำข้น",
+      "price": 70,
+      "description": "รสจัดจ้าน เสิร์ฟร้อน ๆ ในหม้อไฟ",
+      "image": "https://images.unsplash.com/photo-1569562211093-4ed0d0758f12?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-5",
+      "restaurantId": "res-ruea-nung",
+      "name": "ก๋วยเตี๋ยวเรือหมูน้ำตก (ชามเล็ก)",
+      "price": 20,
+      "description": "น้ำซุปเข้มข้น เลือกเส้นได้",
+      "image": "https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-6",
+      "restaurantId": "res-ruea-nung",
+      "name": "ก๋วยเตี๋ยวเนื้อตุ๋น (ชามพิเศษ)",
+      "price": 60,
+      "description": "เนื้อตุ๋นเปื่อยนุ่ม เครื่องเต็มชาม",
+      "image": "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-7",
+      "restaurantId": "res-ruea-nung",
+      "name": "เย็นตาโฟทะเล",
+      "price": 55,
+      "description": "ลูกชิ้นปลา ปลาหมึก กุ้ง เต้าหู้ทอด",
+      "image": "https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-8",
+      "restaurantId": "res-dusit-brew",
+      "name": "Dirty Latte",
+      "price": 85,
+      "description": "เอสเปรสโซเข้ม ๆ ราดบนนมเย็น",
+      "image": "https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-9",
+      "restaurantId": "res-dusit-brew",
+      "name": "อเมริกาโน่เย็น",
+      "price": 65,
+      "description": "เมล็ดคั่วกลางจากเชียงราย",
+      "image": "https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-10",
+      "restaurantId": "res-dusit-brew",
+      "name": "ชาไทยนมสด",
+      "price": 70,
+      "description": "หวานน้อยได้ ใช้ชาแดงแท้",
+      "image": "https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-11",
+      "restaurantId": "res-dusit-brew",
+      "name": "ครัวซองต์เนยสด",
+      "price": 60,
+      "description": "อบใหม่ทุกเช้า ชั้นกรอบเนยหอม",
+      "image": "https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-12",
+      "restaurantId": "res-bualoy-pa-noi",
+      "name": "บัวลอยไข่หวาน",
+      "price": 35,
+      "description": "กะทิสดคั้นเอง ไข่หวานเยิ้ม",
+      "image": "https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-13",
+      "restaurantId": "res-bualoy-pa-noi",
+      "name": "รวมมิตรน้ำกะทิ",
+      "price": 40,
+      "description": "ลอดช่อง เผือก ขนุน ครบเครื่อง",
+      "image": "https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-14",
+      "restaurantId": "res-bualoy-pa-noi",
+      "name": "กล้วยบวชชี",
+      "price": 30,
+      "description": "กล้วยน้ำว้าสุกกำลังดี",
+      "image": "https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-15",
+      "restaurantId": "res-sdu-canteen",
+      "name": "ข้าวราดแกง 2 อย่าง",
+      "price": 40,
+      "description": "เลือกกับข้าวได้กว่า 10 อย่างทุกวัน",
+      "image": "https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-16",
+      "restaurantId": "res-sdu-canteen",
+      "name": "ข้าวมันไก่",
+      "price": 40,
+      "description": "น้ำจิ้มเต้าเจี้ยวสูตรเฉพาะ",
+      "image": "https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=640&q=70",
+      "recommended": true,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "menu-17",
+      "restaurantId": "res-sdu-canteen",
+      "name": "ส้มตำไทยไข่เค็ม",
+      "price": 45,
+      "description": "ตำสดทุกจาน เผ็ดได้ตามสั่ง",
+      "image": "https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=640&q=70",
+      "recommended": false,
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    }
+  ],
+  "reviews": [
+    {
+      "id": "rev-1",
+      "restaurantId": "res-khrua-yai",
+      "author": "ปอนด์ (นักศึกษาปี 3)",
+      "rating": 5,
+      "comment": "กะเพราที่นี่หอมกระทะจริง ราคาไม่แพง อิ่มทุกครั้ง เที่ยงคนเยอะหน่อยแต่คุ้มค่ารอ",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-2",
+      "restaurantId": "res-khrua-yai",
+      "author": "มายด์",
+      "rating": 4,
+      "comment": "อร่อยดี แต่ถ้ามาช่วง 12.00 ต้องรอประมาณ 15 นาที แนะนำโทรสั่งล่วงหน้า",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-3",
+      "restaurantId": "res-ruea-nung",
+      "author": "เจได",
+      "rating": 5,
+      "comment": "สั่งทีละ 3 ชามยังไม่ถึงร้อย น้ำซุปเข้มข้นมาก ผักเติมได้ไม่อั้นด้วย",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-4",
+      "restaurantId": "res-ruea-nung",
+      "author": "แนน",
+      "rating": 5,
+      "comment": "เนื้อตุ๋นเปื่อยกำลังดี ชอบมาก มาบ่อยจนป้าจำได้แล้ว",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-5",
+      "restaurantId": "res-dusit-brew",
+      "author": "ฟ้า",
+      "rating": 4,
+      "comment": "นั่งติวได้ทั้งบ่าย ปลั๊กครบทุกโต๊ะ Wi-Fi ไม่หลุด กาแฟรสนุ่มดี",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-6",
+      "restaurantId": "res-dusit-brew",
+      "author": "ต้นกล้า",
+      "rating": 5,
+      "comment": "ชั้นบนเงียบมาก เหมาะกับทำโปรเจกต์ ครัวซองต์อบใหม่อร่อยเกินราคา",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-7",
+      "restaurantId": "res-bualoy-pa-noi",
+      "author": "ใบเตย",
+      "rating": 5,
+      "comment": "กะทิหอมมาก หวานกำลังดี ไม่เลี่ยน ซื้อกลับบ้านทุกวันศุกร์",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-8",
+      "restaurantId": "res-sdu-canteen",
+      "author": "ภูมิ",
+      "rating": 4,
+      "comment": "ราคาถูกที่สุดแถวนี้ มีให้เลือกเยอะ แต่ช่วงพักเที่ยงต้องแย่งที่นั่ง",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    },
+    {
+      "id": "rev-9",
+      "restaurantId": "res-sdu-canteen",
+      "author": "อิ๊ก",
+      "rating": 4,
+      "comment": "ข้าวมันไก่คุ้มมาก 40 บาท น้ำจิ้มอร่อย แอร์เย็นสบาย",
+      "createdAt": "2026-09-01T09:00:00.000Z"
+    }
+  ],
+  "teamMembers": [
+    {
+      "id": "member-1",
+      "name": "นาย นภัสพล ผู้แสนสะอาด",
+      "studentId": "6911011662002",
+      "role": "หัวหน้าโครงการ & พัฒนาเว็บไซต์",
+      "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
+      "image": "/uploads/team-1-mufsvrlu-va4k.webp",
+      "bio": "รับผิดชอบการออกแบบสถาปัตยกรรมระบบ พัฒนา Web Application และดูแลฐานข้อมูลร้านอาหาร",
+      "sortOrder": 1,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "major": "ความมั่นคงปลอดภัยไซเบอร์"
+    },
+    {
+      "id": "member-2",
+      "name": "นายจาวา เรือง",
+      "studentId": "6611011340002",
+      "role": "ออกแบบ UI/UX & รวบรวมข้อมูล",
+      "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
+      "image": "/uploads/team-2-mufsvrlv-6mw6.webp",
+      "bio": "รับผิดชอบการออกแบบหน้าจอและประสานงานสำรวจร้านอาหารรอบมหาวิทยาลัยสวนดุสิต",
+      "sortOrder": 2,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "major": "ความมั่นคงปลอดภัยไซเบอร์"
+    },
+    {
+      "id": "member-3",
+      "name": "นายยูอุตะ ยามาดะ",
+      "studentId": "69110116620011",
+      "role": "ถ่ายภาพ & จัดเตรียมเนื้อหา",
+      "faculty": "โรงเรียนการเรือน",
+      "image": "/uploads/team-3-mufsvrlv-m1iz.webp",
+      "bio": "รับผิดชอบการลงพื้นที่ถ่ายภาพร้านอาหาร เมนูแนะนำ และทดสอบระบบ",
+      "sortOrder": 3,
+      "createdAt": "2026-09-01T09:00:00.000Z",
+      "major": "ความมั่นคงปลอดภัยไซเบอร์"
+    },
+    {
+      "name": "นายทศวรรษ คำบุญเรือง",
+      "studentId": "6911011662009",
+      "role": "สมาชิก",
+      "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
+      "major": "ความมั่นคงปลอดภัยไซเบอร์",
+      "image": "",
+      "bio": "",
+      "sortOrder": 4,
+      "id": "member-mufox9m5-h6a4ln",
+      "createdAt": "2026-09-24T15:32:15.725Z"
+    },
+    {
+      "name": "นายกนกณัฐ พูลสมบัติ",
+      "studentId": "6911011662010",
+      "role": "สมาชิก",
+      "faculty": "คณะวิทยาศาสตร์และเทคโนโลยี",
+      "major": "ความมั่นคงปลอดภัยไซเบอร์",
+      "image": "/uploads/team-5-mufsvrlv-u515.webp",
+      "bio": "",
+      "sortOrder": 5,
+      "id": "member-mufoy7f7-5e5j32",
+      "createdAt": "2026-09-24T15:32:59.539Z"
+    }
+  ]
+}

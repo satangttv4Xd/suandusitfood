@@ -41,8 +41,8 @@ import type {
  * `fetch()` calls against a REST API is the only change a real backend needs.
  */
 
-export const STORAGE_KEY = 'sdfg.db.v1'
-export const DB_VERSION = 1
+export const STORAGE_KEY = 'sdfg.db.v2'
+export const DB_VERSION = 2
 
 /** localStorage is ~5 MB in every browser; warn the admin well before that. */
 export const STORAGE_QUOTA_BYTES = 5 * 1024 * 1024
@@ -127,14 +127,23 @@ function readFromStorage(): Database {
   try {
     const raw = localStorage.getItem(STORAGE_KEY)
     if (!raw) {
-      const fresh = seedDatabase()
+      let users: User[] = []
+      try {
+        const old = localStorage.getItem('sdfg.db.v1')
+        if (old) {
+          const parsed = JSON.parse(old)
+          if (Array.isArray(parsed.users) && parsed.users.length) {
+            users = parsed.users
+          }
+        }
+      } catch {}
+
+      const fresh = seedDatabase(users)
       localStorage.setItem(STORAGE_KEY, JSON.stringify(fresh))
       return fresh
     }
     return normalise(JSON.parse(raw))
   } catch {
-    // Corrupted or unavailable storage — run from a clean in-memory copy
-    // rather than blanking the screen.
     return seedDatabase()
   }
 }
