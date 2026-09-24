@@ -138,35 +138,8 @@ INSERT INTO restaurant_images (id, restaurant_id, url, caption, sort_order) VALU
 INSERT INTO restaurant_images (id, restaurant_id, url, caption, sort_order) VALUES ('img-mufnipf6-6md513', 'res-sdu-canteen', '/uploads/gallery-11-mufsvrm3-6vua.webp', '', 0);
 INSERT INTO restaurant_images (id, restaurant_id, url, caption, sort_order) VALUES ('img-mufnipf6-z1g148', 'res-sdu-canteen', '/uploads/gallery-12-mufsvrm3-0e10.webp', '', 1);
 
--- Menus
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-1', 'res-khrua-yai', 'กะเพราหมูสับไข่ดาว', 55, 'ไฟแรงกลิ่นหอมกระทะ เผ็ดได้ตามสั่ง', 'https://images.unsplash.com/photo-1552611052-33e04de081de?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-2', 'res-khrua-yai', 'ข้าวผัดกุ้ง', 65, 'กุ้งสด 5 ตัว เสิร์ฟพร้อมมะนาวและแตงกวา', 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-3', 'res-khrua-yai', 'ผัดซีอิ๊วหมู', 50, 'เส้นใหญ่ผัดไฟแรง ไข่นุ่ม', 'https://images.unsplash.com/photo-1600891964092-4316c288032e?auto=format&fit=crop&w=640&q=70', false);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-4', 'res-khrua-yai', 'ต้มยำน้ำข้น', 70, 'รสจัดจ้าน เสิร์ฟร้อน ๆ ในหม้อไฟ', 'https://images.unsplash.com/photo-1569562211093-4ed0d0758f12?auto=format&fit=crop&w=640&q=70', false);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-5', 'res-ruea-nung', 'ก๋วยเตี๋ยวเรือหมูน้ำตก (ชามเล็ก)', 20, 'น้ำซุปเข้มข้น เลือกเส้นได้', 'https://images.unsplash.com/photo-1555126634-323283e090fa?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-6', 'res-ruea-nung', 'ก๋วยเตี๋ยวเนื้อตุ๋น (ชามพิเศษ)', 60, 'เนื้อตุ๋นเปื่อยนุ่ม เครื่องเต็มชาม', 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-7', 'res-ruea-nung', 'เย็นตาโฟทะเล', 55, 'ลูกชิ้นปลา ปลาหมึก กุ้ง เต้าหู้ทอด', 'https://images.unsplash.com/photo-1585032226651-759b368d7246?auto=format&fit=crop&w=640&q=70', false);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-8', 'res-dusit-brew', 'Dirty Latte', 85, 'เอสเปรสโซเข้ม ๆ ราดบนนมเย็น', 'https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-9', 'res-dusit-brew', 'อเมริกาโน่เย็น', 65, 'เมล็ดคั่วกลางจากเชียงราย', 'https://images.unsplash.com/photo-1517701550927-30cf4ba1dba5?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-10', 'res-dusit-brew', 'ชาไทยนมสด', 70, 'หวานน้อยได้ ใช้ชาแดงแท้', 'https://images.unsplash.com/photo-1558857563-b371033873b8?auto=format&fit=crop&w=640&q=70', false);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-11', 'res-dusit-brew', 'ครัวซองต์เนยสด', 60, 'อบใหม่ทุกเช้า ชั้นกรอบเนยหอม', 'https://images.unsplash.com/photo-1555507036-ab1f4038808a?auto=format&fit=crop&w=640&q=70', false);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-12', 'res-bualoy-pa-noi', 'บัวลอยไข่หวาน', 35, 'กะทิสดคั้นเอง ไข่หวานเยิ้ม', 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-13', 'res-bualoy-pa-noi', 'รวมมิตรน้ำกะทิ', 40, 'ลอดช่อง เผือก ขนุน ครบเครื่อง', 'https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-14', 'res-bualoy-pa-noi', 'กล้วยบวชชี', 30, 'กล้วยน้ำว้าสุกกำลังดี', 'https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&w=640&q=70', false);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-15', 'res-sdu-canteen', 'ข้าวราดแกง 2 อย่าง', 40, 'เลือกกับข้าวได้กว่า 10 อย่างทุกวัน', 'https://images.unsplash.com/photo-1543353071-873f17a7a088?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-16', 'res-sdu-canteen', 'ข้าวมันไก่', 40, 'น้ำจิ้มเต้าเจี้ยวสูตรเฉพาะ', 'https://images.unsplash.com/photo-1617093727343-374698b1b08d?auto=format&fit=crop&w=640&q=70', true);
-INSERT INTO menus (id, restaurant_id, name, price, description, image, recommended) VALUES ('menu-17', 'res-sdu-canteen', 'ส้มตำไทยไข่เค็ม', 45, 'ตำสดทุกจาน เผ็ดได้ตามสั่ง', 'https://images.unsplash.com/photo-1562565652-a0d8f0c59eb4?auto=format&fit=crop&w=640&q=70', false);
-
--- Reviews
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-1', 'res-khrua-yai', 'ปอนด์ (นักศึกษาปี 3)', 5, 'กะเพราที่นี่หอมกระทะจริง ราคาไม่แพง อิ่มทุกครั้ง เที่ยงคนเยอะหน่อยแต่คุ้มค่ารอ');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-2', 'res-khrua-yai', 'มายด์', 4, 'อร่อยดี แต่ถ้ามาช่วง 12.00 ต้องรอประมาณ 15 นาที แนะนำโทรสั่งล่วงหน้า');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-3', 'res-ruea-nung', 'เจได', 5, 'สั่งทีละ 3 ชามยังไม่ถึงร้อย น้ำซุปเข้มข้นมาก ผักเติมได้ไม่อั้นด้วย');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-4', 'res-ruea-nung', 'แนน', 5, 'เนื้อตุ๋นเปื่อยกำลังดี ชอบมาก มาบ่อยจนป้าจำได้แล้ว');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-5', 'res-dusit-brew', 'ฟ้า', 4, 'นั่งติวได้ทั้งบ่าย ปลั๊กครบทุกโต๊ะ Wi-Fi ไม่หลุด กาแฟรสนุ่มดี');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-6', 'res-dusit-brew', 'ต้นกล้า', 5, 'ชั้นบนเงียบมาก เหมาะกับทำโปรเจกต์ ครัวซองต์อบใหม่อร่อยเกินราคา');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-7', 'res-bualoy-pa-noi', 'ใบเตย', 5, 'กะทิหอมมาก หวานกำลังดี ไม่เลี่ยน ซื้อกลับบ้านทุกวันศุกร์');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-8', 'res-sdu-canteen', 'ภูมิ', 4, 'ราคาถูกที่สุดแถวนี้ มีให้เลือกเยอะ แต่ช่วงพักเที่ยงต้องแย่งที่นั่ง');
-INSERT INTO reviews (id, restaurant_id, author, rating, comment) VALUES ('rev-9', 'res-sdu-canteen', 'อิ๊ก', 4, 'ข้าวมันไก่คุ้มมาก 40 บาท น้ำจิ้มอร่อย แอร์เย็นสบาย');
+-- Menus (Empty initially - add real menus via Admin)
+-- Reviews (Empty initially - student reviews will be stored here)
 
 -- Team Members
 INSERT INTO team_members (id, name, student_id, role, faculty, major, image, bio, sort_order) VALUES ('member-1', 'นาย นภัสพล ผู้แสนสะอาด', '6911011662002', 'หัวหน้าโครงการ & พัฒนาเว็บไซต์', 'คณะวิทยาศาสตร์และเทคโนโลยี', 'ความมั่นคงปลอดภัยไซเบอร์', '/uploads/team-1-mufsvrlu-va4k.webp', 'รับผิดชอบการออกแบบสถาปัตยกรรมระบบ พัฒนา Web Application และดูแลฐานข้อมูลร้านอาหาร', 1);

@@ -185,7 +185,9 @@ export function Restaurant() {
               <span className="flex items-center gap-2">
                 <Stars value={restaurant.ratingAvg} />
                 <strong className="text-ink">{restaurant.ratingAvg.toFixed(1)}</strong>
-                <span className="text-muted">({restaurant.reviewCount} รีวิว)</span>
+                <span className="text-muted">
+                  ({restaurant.reviewCount ? `${restaurant.reviewCount} รีวิว` : 'ยังไม่มีรีวิว'})
+                </span>
               </span>
               <span className="flex items-center gap-1.5">
                 <Icon name="coin" className="h-4 w-4 text-brand-400" />
@@ -203,23 +205,13 @@ export function Restaurant() {
           </header>
 
           {/* ---------------------------------------------------- menu */}
-          <section className="mt-12">
-            <SectionHeading
-              eyebrow="Menu"
-              title="เมนูอาหารแนะนำ"
-              description={
-                restaurant.menus.length
-                  ? `มีทั้งหมด ${restaurant.menus.length} เมนูในระบบ`
-                  : undefined
-              }
-            />
-            {restaurant.menus.length === 0 ? (
-              <EmptyState
-                icon="utensils"
-                title="ยังไม่มีเมนูสำหรับร้านนี้"
-                description="ผู้ดูแลระบบสามารถเพิ่มเมนูได้จากหน้าจัดการเมนูอาหาร"
+          {restaurant.menus.length > 0 && (
+            <section className="mt-12">
+              <SectionHeading
+                eyebrow="Menu"
+                title="เมนูอาหาร"
+                description={`มีทั้งหมด ${restaurant.menus.length} เมนูในระบบ`}
               />
-            ) : (
               <div className="grid gap-4 sm:grid-cols-2">
                 {[...recommended, ...others].map((menu) => (
                   <article
@@ -251,15 +243,19 @@ export function Restaurant() {
                   </article>
                 ))}
               </div>
-            )}
-          </section>
+            </section>
+          )}
 
           {/* ------------------------------------------------- reviews */}
           <section className="mt-12">
             <SectionHeading
               eyebrow="Reviews"
               title="รีวิวจากนักศึกษา"
-              description={`คะแนนเฉลี่ย ${restaurant.ratingAvg.toFixed(1)} จาก ${restaurant.reviewCount} รีวิว`}
+              description={
+                restaurant.reviews.length > 0
+                  ? `คะแนนเฉลี่ย ${restaurant.ratingAvg.toFixed(1)} จาก ${restaurant.reviewCount} รีวิว`
+                  : 'ยังไม่มีรีวิวสำหรับร้านนี้ คุณสามารถร่วมเขียนรีวิวเป็นคนแรกได้เลย!'
+              }
             />
 
             {restaurant.reviews.length > 0 && (
