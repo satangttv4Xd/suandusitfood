@@ -96,6 +96,27 @@ export function About() {
         </div>
       </section>
 
+      <section className="mt-14 overflow-hidden rounded-card bg-gradient-to-r from-brand-600 to-navy-800 p-8 text-white">
+        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <span className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-gold-300">
+              <Icon name="sparkles" className="h-3.5 w-3.5" />
+              SDU Spirit & Identity
+            </span>
+            <h2 className="mt-2 text-2xl font-bold text-white">SDU Spirit กับคู่มืออาหารสวนดุสิต</h2>
+            <p className="mt-2 max-w-xl text-sm leading-relaxed text-navy-100/90">
+              เรียนรู้ความเชื่อมโยงระหว่างอัตลักษณ์ 9 ประการของชาวสวนดุสิต กับมารยาทการรับประทานอาหาร
+              และการมีบุคลิกภาพที่ดีในการแต่งกายและยืนถ่ายรูป
+            </p>
+          </div>
+          <div className="shrink-0">
+            <ButtonLink to="/sdu-spirit" variant="gold" iconRight="arrowRight">
+              อ่าน SDU Spirit
+            </ButtonLink>
+          </div>
+        </div>
+      </section>
+
       <section className="mt-14">
         <h2 className="text-2xl">หมายเหตุ</h2>
         <ul className="mt-4 space-y-3 text-body">

@@ -7,6 +7,7 @@ import { Home } from './pages/Home'
 import { MapPage } from './pages/MapPage'
 import { Restaurant } from './pages/Restaurant'
 import { Restaurants } from './pages/Restaurants'
+import { SDUSpirit } from './pages/SDUSpirit'
 import { Team } from './pages/Team'
 import { AdminLayout, RequireAuth } from './pages/admin/AdminLayout'
 import { AdminMenus } from './pages/admin/AdminMenus'
@@ -40,6 +41,7 @@ export default function App() {
             <Route path="restaurant/:slug" element={<Restaurant />} />
             <Route path="categories" element={<Navigate to="/restaurants" replace />} />
             <Route path="map" element={<MapPage />} />
+            <Route path="sdu-spirit" element={<SDUSpirit />} />
             <Route path="about" element={<About />} />
             <Route path="team" element={<Team />} />
             <Route path="*" element={<NotFound />} />

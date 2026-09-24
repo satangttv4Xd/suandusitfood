@@ -7,6 +7,7 @@ const NAV = [
   { to: '/', label: 'หน้าแรก', end: true },
   { to: '/restaurants', label: 'ร้านอาหาร', end: false },
   { to: '/map', label: 'แผนที่', end: false },
+  { to: '/sdu-spirit', label: 'SDU Spirit', end: false },
   { to: '/about', label: 'เกี่ยวกับเรา', end: false },
   { to: '/team', label: 'สมาชิกผู้จัดทำ', end: false },
 ]
