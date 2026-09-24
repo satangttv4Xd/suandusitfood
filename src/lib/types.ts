@@ -97,6 +97,18 @@ export interface Review {
   createdAt: string
 }
 
+export interface TeamMember {
+  id: string
+  name: string
+  studentId: string
+  role: string
+  faculty: string
+  image: string
+  bio: string
+  sortOrder: number
+  createdAt: string
+}
+
 export interface Database {
   version: number
   users: User[]
@@ -105,6 +117,7 @@ export interface Database {
   restaurantImages: RestaurantImage[]
   menus: Menu[]
   reviews: Review[]
+  teamMembers: TeamMember[]
 }
 
 /** A restaurant joined with everything the UI usually needs alongside it. */

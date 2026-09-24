@@ -7,11 +7,13 @@ import { Home } from './pages/Home'
 import { MapPage } from './pages/MapPage'
 import { Restaurant } from './pages/Restaurant'
 import { Restaurants } from './pages/Restaurants'
+import { Team } from './pages/Team'
 import { AdminLayout, RequireAuth } from './pages/admin/AdminLayout'
 import { AdminMenus } from './pages/admin/AdminMenus'
 import { AdminRestaurants } from './pages/admin/AdminRestaurants'
 import { AdminReviews } from './pages/admin/AdminReviews'
 import { AdminSettings } from './pages/admin/AdminSettings'
+import { AdminTeam } from './pages/admin/AdminTeam'
 import { Dashboard } from './pages/admin/Dashboard'
 import { Login } from './pages/admin/Login'
 import { RestaurantForm } from './pages/admin/RestaurantForm'
@@ -39,6 +41,7 @@ export default function App() {
             <Route path="categories" element={<Navigate to="/restaurants" replace />} />
             <Route path="map" element={<MapPage />} />
             <Route path="about" element={<About />} />
+            <Route path="team" element={<Team />} />
             <Route path="*" element={<NotFound />} />
           </Route>
 
@@ -51,6 +54,7 @@ export default function App() {
               <Route path="restaurants/new" element={<RestaurantForm />} />
               <Route path="restaurants/:id" element={<RestaurantForm />} />
               <Route path="menus" element={<AdminMenus />} />
+              <Route path="team" element={<AdminTeam />} />
               <Route path="categories" element={<Navigate to="/admin" replace />} />
               <Route path="reviews" element={<AdminReviews />} />
               <Route path="settings" element={<AdminSettings />} />

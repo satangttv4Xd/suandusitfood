@@ -8,6 +8,7 @@ const NAV: { to: string; label: string; icon: IconName; end?: boolean }[] = [
   { to: '/admin', label: 'ภาพรวม', icon: 'dashboard', end: true },
   { to: '/admin/restaurants', label: 'ร้านอาหาร', icon: 'store' },
   { to: '/admin/menus', label: 'เมนูอาหาร', icon: 'utensils' },
+  { to: '/admin/team', label: 'สมาชิกผู้จัดทำ', icon: 'users' },
   { to: '/admin/reviews', label: 'รีวิว', icon: 'message' },
   { to: '/admin/settings', label: 'ตั้งค่าข้อมูล', icon: 'settings' },
 ]

@@ -1,4 +1,11 @@
-import { seedCategories, seedImages, seedMenus, seedRestaurants, seedReviews } from './seed'
+import {
+  seedCategories,
+  seedImages,
+  seedMenus,
+  seedRestaurants,
+  seedReviews,
+  seedTeamMembers,
+} from './seed'
 import type {
   Category,
   Database,
@@ -7,6 +14,7 @@ import type {
   RestaurantImage,
   RestaurantView,
   Review,
+  TeamMember,
   User,
 } from './types'
 
@@ -55,6 +63,7 @@ function emptyDatabase(): Database {
     restaurantImages: [],
     menus: [],
     reviews: [],
+    teamMembers: [],
   }
 }
 
@@ -67,6 +76,7 @@ export function seedDatabase(users: User[] = []): Database {
     restaurantImages: structuredClone(seedImages),
     menus: structuredClone(seedMenus),
     reviews: structuredClone(seedReviews),
+    teamMembers: structuredClone(seedTeamMembers),
   }
 }
 
@@ -85,6 +95,9 @@ function normalise(raw: unknown): Database {
       : base.restaurantImages,
     menus: Array.isArray(input.menus) ? input.menus : base.menus,
     reviews: Array.isArray(input.reviews) ? input.reviews : base.reviews,
+    teamMembers: Array.isArray(input.teamMembers)
+      ? input.teamMembers
+      : structuredClone(seedTeamMembers),
   }
 }
 
@@ -382,6 +395,42 @@ export function createReview(input: ReviewInput): Review {
 export function deleteReview(id: string) {
   mutate((db) => {
     db.reviews = db.reviews.filter((r) => r.id !== id)
+  })
+}
+
+// ------------------------------------------------------------- team members
+
+export type TeamMemberInput = Omit<TeamMember, 'id' | 'createdAt'>
+
+export function listTeamMembers(): TeamMember[] {
+  return [...(getDatabase().teamMembers || [])].sort((a, b) => a.sortOrder - b.sortOrder)
+}
+
+export function createTeamMember(input: TeamMemberInput): TeamMember {
+  return mutate((db) => {
+    if (!db.teamMembers) db.teamMembers = []
+    const member: TeamMember = {
+      ...input,
+      id: uid('member'),
+      createdAt: new Date().toISOString(),
+    }
+    db.teamMembers.push(member)
+    return member
+  })
+}
+
+export function updateTeamMember(id: string, input: Partial<TeamMemberInput>) {
+  mutate((db) => {
+    if (!db.teamMembers) db.teamMembers = []
+    const member = db.teamMembers.find((m) => m.id === id)
+    if (member) Object.assign(member, input)
+  })
+}
+
+export function deleteTeamMember(id: string) {
+  mutate((db) => {
+    if (!db.teamMembers) db.teamMembers = []
+    db.teamMembers = db.teamMembers.filter((m) => m.id !== id)
   })
 }
 

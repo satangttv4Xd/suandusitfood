@@ -30,6 +30,7 @@ CREATE DATABASE IF NOT EXISTS `suandusitfood`
 USE `suandusitfood`;
 
 SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS `team_members`;
 DROP TABLE IF EXISTS `reviews`;
 DROP TABLE IF EXISTS `menus`;
 DROP TABLE IF EXISTS `restaurant_images`;
@@ -183,6 +184,22 @@ CREATE TABLE `reviews` (
     FOREIGN KEY (`restaurant_id`) REFERENCES `restaurants` (`id`)
     ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `ck_reviews_rating` CHECK (`rating` BETWEEN 1 AND 5)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
+
+-- -----------------------------------------------------------------------------
+--  team_members — ข้อมูลสมาชิกผู้จัดทำโครงงาน (วิชาพลังสวนดุสิต)
+-- -----------------------------------------------------------------------------
+CREATE TABLE `team_members` (
+  `id`          VARCHAR(64)   NOT NULL,
+  `name`        VARCHAR(120)  NOT NULL,
+  `student_id`  VARCHAR(30)   NOT NULL DEFAULT '',
+  `role`        VARCHAR(120)  NOT NULL DEFAULT '',
+  `faculty`     VARCHAR(150)  NOT NULL DEFAULT '',
+  `image`       MEDIUMTEXT    NOT NULL,
+  `bio`         TEXT          NOT NULL,
+  `sort_order`  INT           NOT NULL DEFAULT 0,
+  `created_at`  DATETIME      NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
 ) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_unicode_ci;
 
 -- =============================================================================

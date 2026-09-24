@@ -297,3 +297,40 @@ export const seedReviews: Database['reviews'] = reviewRows.map(
     createdAt: now,
   }),
 )
+
+export const seedTeamMembers: Database['teamMembers'] = [
+  {
+    id: 'member-1',
+    name: 'นายกิตติศักดิ์ พัฒนกิจ',
+    studentId: '6611011340001',
+    role: 'หัวหน้าโครงการ & พัฒนาเว็บไซต์',
+    faculty: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+    image: '',
+    bio: 'รับผิดชอบการออกแบบสถาปัตยกรรมระบบ พัฒนา Web Application และดูแลฐานข้อมูลร้านอาหาร',
+    sortOrder: 1,
+    createdAt: now,
+  },
+  {
+    id: 'member-2',
+    name: 'นางสาวธนภรณ์ ศรีสุข',
+    studentId: '6611011340002',
+    role: 'ออกแบบ UI/UX & รวบรวมข้อมูล',
+    faculty: 'คณะวิทยาศาสตร์และเทคโนโลยี',
+    image: '',
+    bio: 'รับผิดชอบการออกแบบหน้าจอและประสานงานสำรวจร้านอาหารรอบมหาวิทยาลัยสวนดุสิต',
+    sortOrder: 2,
+    createdAt: now,
+  },
+  {
+    id: 'member-3',
+    name: 'นายวรเมธ วงศ์สว่าง',
+    studentId: '6611011340003',
+    role: 'ถ่ายภาพ & จัดเตรียมเนื้อหา',
+    faculty: 'โรงเรียนการเรือน',
+    image: '',
+    bio: 'รับผิดชอบการลงพื้นที่ถ่ายภาพร้านอาหาร เมนูแนะนำ และทดสอบระบบ',
+    sortOrder: 3,
+    createdAt: now,
+  },
+]
+

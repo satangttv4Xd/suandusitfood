@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Icon, type IconName } from '../components/Icon'
 import { ButtonLink } from '../components/ui'
 import { useCategories, useRestaurantViews } from '../lib/hooks'
@@ -114,7 +115,13 @@ export function About() {
           </li>
           <li className="flex gap-3">
             <Icon name="info" className="mt-1 h-4 w-4 shrink-0 text-brand-500" />
-            จัดทำขึ้้นสำหรับรายวิชา พลังสวนดุสิต
+            <span>
+              จัดทำขึ้นสำหรับรายวิชา พลังสวนดุสิต (
+              <Link to="/team" className="font-semibold text-brand-700 underline hover:text-brand-800">
+                ดูรายชื่อสมาชิกผู้จัดทำ
+              </Link>
+              )
+            </span>
           </li>
         </ul>
       </section>

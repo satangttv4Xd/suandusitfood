@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, useSyncExternalStore } from 'react'
 import * as db from './db'
 import { getSession, subscribeSession, type Session } from './auth'
 import { isOpenNow, matches } from './format'
-import type { Category, Database, RestaurantView } from './types'
+import type { Category, Database, RestaurantView, TeamMember } from './types'
 
 /**
  * React bindings for the store.
@@ -13,6 +13,14 @@ import type { Category, Database, RestaurantView } from './types'
  */
 export function useDatabase(): Database {
   return useSyncExternalStore(db.subscribe, db.getDatabase, db.getDatabase)
+}
+
+export function useTeamMembers(): TeamMember[] {
+  const database = useDatabase()
+  return useMemo(
+    () => [...(database.teamMembers || [])].sort((a, b) => a.sortOrder - b.sortOrder),
+    [database],
+  )
 }
 
 export function useCategories(): Category[] {

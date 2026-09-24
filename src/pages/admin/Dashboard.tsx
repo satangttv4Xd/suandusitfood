@@ -197,6 +197,16 @@ export function Dashboard() {
                 </span>
               </li>
               <li className="flex items-start gap-3">
+                <Icon name="users" className="mt-0.5 h-4 w-4 shrink-0 text-brand-600" />
+                <span className="text-body">
+                  สมาชิกผู้จัดทำ {database.teamMembers?.length ?? 0} คน (
+                  <Link to="/admin/team" className="font-semibold text-brand-700 hover:underline">
+                    จัดการข้อมูล
+                  </Link>
+                  )
+                </span>
+              </li>
+              <li className="flex items-start gap-3">
                 <Icon name="message" className="mt-0.5 h-4 w-4 shrink-0 text-navy-600" />
                 <span className="text-body">
                   มีรีวิวทั้งหมด {database.reviews.length} รายการ

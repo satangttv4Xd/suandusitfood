@@ -8,6 +8,7 @@ const NAV = [
   { to: '/restaurants', label: 'ร้านอาหาร', end: false },
   { to: '/map', label: 'แผนที่', end: false },
   { to: '/about', label: 'เกี่ยวกับเรา', end: false },
+  { to: '/team', label: 'สมาชิกผู้จัดทำ', end: false },
 ]
 
 function Wordmark({ compact = false }: { compact?: boolean }) {
