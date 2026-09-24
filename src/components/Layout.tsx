@@ -177,9 +177,15 @@ function Footer() {
       </div>
 
       <div className="border-t border-white/10">
-        <p className="mx-auto max-w-7xl px-4 py-5 text-center text-sm text-navy-100/75 sm:px-6 lg:px-8">
-          © {new Date().getFullYear()} Suan Dusit Food Guide — Powered by satangttv4
-        </p>
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-2 px-4 py-5 text-center text-sm text-navy-100/75 sm:flex-row sm:px-6 lg:px-8">
+          <p>© {new Date().getFullYear()} Suan Dusit Food Guide — Powered by satangttv4</p>
+          <Link
+            to="/admin"
+            className="text-xs text-navy-100/60 transition-colors duration-200 hover:text-white"
+          >
+            สำหรับผู้ดูแลระบบ
+          </Link>
+        </div>
       </div>
     </footer>
   )
