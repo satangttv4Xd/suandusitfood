@@ -141,15 +141,6 @@ export function SDUSpirit() {
           และการเสริมสร้างบุคลิกภาพที่ดีของนักศึกษา
         </p>
 
-        {/* Famous Motto Quote */}
-        <div className="mt-8 rounded-2xl bg-gradient-to-r from-brand-600 to-navy-800 p-6 text-white shadow-card">
-          <p className="font-display text-lg sm:text-xl font-bold tracking-wide text-gold-300">
-            “แฟชั่นใช้เงินซื้อมา เครื่องแบบนักศึกษา ใช้ปัญญาซื้อ”
-          </p>
-          <p className="mt-2 text-xs sm:text-sm text-navy-100/90">
-            มหาวิทยาลัยสวนดุสิต ชื่นชมและส่งเสริมให้นักศึกษาแต่งกายถูกระเบียบ และมีบุคลิกภาพที่สง่างาม
-          </p>
-        </div>
       </header>
 
       {/* ------------------------------------------- Posture & Photo Spotlight */}
